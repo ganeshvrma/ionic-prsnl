@@ -1,0 +1,24 @@
+#supporttitle {
+  font-size: 0.7rem;
+}
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.box input {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+}
+.box ion-textarea {
+  width: 100%;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+.box select {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+}/*# sourceMappingURL=formnavbar.component.css.map */

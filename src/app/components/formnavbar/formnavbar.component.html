@@ -28,49 +28,70 @@
 
 
   <form [formGroup]="jobForm">
-    <ion-item>
-      <ion-label position="stacked">Job title</ion-label>
-      <ion-input formControlName="jobtitle"></ion-input>
-    </ion-item>
+    <div class="box"><p>Job title</p>
+    <input type="text" required >
+    <p>Job Category</p>
+    <select name="" id="" placeholder="fgfgt" style="margin-bottom: 14px;">
+       <option value="it">IT</option>
+       <option value="health">Healthcare</option>
+       <option value="aviation">Aviation</option>
+       <option value="finance">Finance</option>
+    </select>
+    
+    <!-- <ion-item  > -->
+      <!-- <ion-label position="floating">Job title</ion-label> -->
+      <!-- <ion-input class="custom-input" formControlName="jobtitle"></ion-input> -->
+       <!-- <ion-input label="Job title" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+    </ion-item> -->
 
-    <ion-item>
+    <!-- <ion-item>
      
-     <ion-select label=" Job Category"  label-placement="stacked" placeholder="All categories">
+     <ion-select label=" Job Category"  label-placement="floating" placeholder="All categories">
       <ion-select-option value="it">IT</ion-select-option>
       <ion-select-option value="health">Healthcare</ion-select-option>
       <ion-select-option value="aviation">Aviation</ion-select-option>
       <ion-select-option value="finance">Finance</ion-select-option>
-
     </ion-select>
-    </ion-item>
+    </ion-item> -->
 
     
+    <!-- <p>Job Type </p>
+    <label for="ft">Full time</label>
+    <input type="radio" name="fulltime" id="ft" value="fulltime">
+    <input type="radio" name="parttime" id="pt" value="parttime">
+    <label for="pt" >Part time</label> -->
     <ion-list>
       <ion-item>
-      <ion-label position="stacked">Job Type
-</ion-label> </ion-item>
-  <ion-radio-group [compareWith]="compareWith" (ionChange)="handleChange($event)">
+      <ion-label position="fixed" slot="start">Job Type
+        </ion-label>
+     <ion-radio-group [compareWith]="compareWith" (ionChange)="handleChange($event)">
     @for (jobtype of jobtypes; track jobtype.id) {
     <ion-item >
       <ion-radio  id [value]="jobtype">{{ jobtype.name }}</ion-radio>
     </ion-item>
     }
-  </ion-radio-group>
+  </ion-radio-group> </ion-item>
 </ion-list>
    
-    <ion-item>
-      <ion-label position="stacked" aria-required="true">No. of Positions Open</ion-label>
+    <!-- <ion-item>
+      <ion-label position="floating" aria-required="true">No. of Positions Open</ion-label>
       <ion-input formControlName="positions" ></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Job Description</ion-label>
-      <ion-textarea
-    
-    
+    </ion-item> -->
+   <p>No. of Positions Open </p>
+   <input type="number">
+   <p>Job Description</p>
+   <!-- <textarea name="" id=""></textarea> -->
+   <ion-textarea
     autoGrow="true">
   </ion-textarea>
-    </ion-item>
+</div>
+
+    <!-- <ion-item>
+      <ion-label position="floating">Job Description</ion-label>
+      <ion-textarea
+    autoGrow="true">
+  </ion-textarea>
+    </ion-item> -->
 
     <ion-item>
    <ion-label >Candidate Requirement</ion-label>
@@ -186,19 +207,19 @@
     
 </ion-item>
    <ion-item>
-      <ion-label position="stacked">Salary per Month</ion-label>
+      <ion-label position="floating">Salary per Month</ion-label>
       <ion-textarea
        autoGrow="true">
         </ion-textarea>
        </ion-item>
      <ion-item>
-      <ion-label position="stacked">Mention Skills required</ion-label>
+      <ion-label position="floating">Mention Skills required</ion-label>
       <ion-textarea
        autoGrow="true">
         </ion-textarea>
        </ion-item>
        <ion-item>
-      <ion-label position="stacked">Salary per Month</ion-label>
+      <ion-label position="floating">Salary per Month</ion-label>
       <ion-textarea
        autoGrow="true">
         </ion-textarea>
@@ -219,7 +240,7 @@
                 <ion-select-option>Maithali</ion-select-option>
                 <ion-select-option>Bengali</ion-select-option>
               </ion-select><span><ion-checkbox>Read</ion-checkbox><ion-checkbox>Write</ion-checkbox></span></ion-col>
-               <ion-col size="12" size-md="6">
+               <!-- <ion-col size="12" size-md="6">
               <ion-label>Language 2</ion-label>
                <ion-select>
                 <ion-select-option>Hindi</ion-select-option>
@@ -230,7 +251,7 @@
                 <ion-select-option>Maithali</ion-select-option>
                 <ion-select-option>Bengali</ion-select-option>
               </ion-select><span><ion-checkbox>Read</ion-checkbox><ion-checkbox>Write</ion-checkbox></span>
-              </ion-col>
+              </ion-col> -->
             </ion-item>
           </ion-row>
         </ion-grid>
