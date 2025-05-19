@@ -1,13 +1,16 @@
 <ion-header>
-  <ion-toolbar  style="--min-height: 100px;">
-     <ion-title style="padding-bottom: 15px;">1/3</ion-title>
+  <ion-toolbar style="--min-height: 100px">
+    <ion-title style="padding-bottom: 15px">1/3</ion-title>
     <ion-title>Post Job </ion-title>
-   
-    <ion-button slot="end"  id="supporttitle"><ion-icon name="call-outline"></ion-icon>Call customer support</ion-button>
+
+    <ion-button slot="end" id="supporttitle"
+      ><ion-icon name="call-outline"></ion-icon>Call customer
+      support</ion-button
+    >
   </ion-toolbar>
   <ion-toolbar>
     <!-- <ion-searchbar></ion-searchbar> -->
-   
+
     <ion-segment value="all">
       <ion-segment-button value="job">
         <ion-label class="ion-text-wrap">Job Details</ion-label>
@@ -20,31 +23,30 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-
 </ion-header>
 
-  <ion-content class="ion-padding">
+<ion-content class="ion-padding">
   <!-- <ion-progress-bar value="0.33" color="primary"></ion-progress-bar> -->
 
-
   <form [formGroup]="jobForm">
-    <div class="box"><p>Job title</p>
-    <input type="text" required >
-    <p>Job Category</p>
-    <select name="" id="" placeholder="fgfgt" style="margin-bottom: 14px;">
-       <option value="it">IT</option>
-       <option value="health">Healthcare</option>
-       <option value="aviation">Aviation</option>
-       <option value="finance">Finance</option>
-    </select>
-    
-    <!-- <ion-item  > -->
+    <div class="box">
+      <p>Job title</p>
+      <input type="text" required />
+      <p>Job Category</p>
+      <select name="" id="" placeholder="fgfgt" style="margin-bottom: 14px">
+        <option value="it">IT</option>
+        <option value="health">Healthcare</option>
+        <option value="aviation">Aviation</option>
+        <option value="finance">Finance</option>
+      </select>
+
+      <!-- <ion-item  > -->
       <!-- <ion-label position="floating">Job title</ion-label> -->
       <!-- <ion-input class="custom-input" formControlName="jobtitle"></ion-input> -->
-       <!-- <ion-input label="Job title" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+      <!-- <ion-input label="Job title" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
     </ion-item> -->
 
-    <!-- <ion-item>
+      <!-- <ion-item>
      
      <ion-select label=" Job Category"  label-placement="floating" placeholder="All categories">
       <ion-select-option value="it">IT</ion-select-option>
@@ -54,64 +56,62 @@
     </ion-select>
     </ion-item> -->
 
-    
-    <!-- <p>Job Type </p>
+      <!-- <p>Job Type </p>
     <label for="ft">Full time</label>
     <input type="radio" name="fulltime" id="ft" value="fulltime">
     <input type="radio" name="parttime" id="pt" value="parttime">
     <label for="pt" >Part time</label> -->
-    <ion-list>
-      <ion-item>
-      <ion-label position="fixed" slot="start">Job Type
-        </ion-label>
-     <ion-radio-group [compareWith]="compareWith" (ionChange)="handleChange($event)">
-    @for (jobtype of jobtypes; track jobtype.id) {
-    <ion-item >
-      <ion-radio  id [value]="jobtype">{{ jobtype.name }}</ion-radio>
-    </ion-item>
-    }
-  </ion-radio-group> </ion-item>
-</ion-list>
-   
-    <!-- <ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-label position="fixed" slot="start">Job Type </ion-label>
+          <ion-radio-group
+            [compareWith]="compareWith"
+            (ionChange)="handleChange($event)"
+          >
+            @for (jobtype of jobtypes; track jobtype.id) {
+            <ion-item>
+              <ion-radio id [value]="jobtype">{{ jobtype.name }}</ion-radio>
+            </ion-item>
+            }
+          </ion-radio-group>
+        </ion-item>
+      </ion-list>
+
+      <!-- <ion-item>
       <ion-label position="floating" aria-required="true">No. of Positions Open</ion-label>
       <ion-input formControlName="positions" ></ion-input>
     </ion-item> -->
-   <p>No. of Positions Open </p>
-   <input type="number">
-   <p>Job Description</p>
-   <!-- <textarea name="" id=""></textarea> -->
-   <ion-textarea
-    autoGrow="true">
-  </ion-textarea>
-</div>
+      <p>No. of Positions Open</p>
+      <input type="number" />
+      <p>Job Description</p>
+      <!-- <textarea name="" id=""></textarea> -->
+      <ion-textarea autoGrow="true"> </ion-textarea>
 
-    <!-- <ion-item>
+      <!-- <ion-item>
       <ion-label position="floating">Job Description</ion-label>
       <ion-textarea
     autoGrow="true">
   </ion-textarea>
     </ion-item> -->
 
-    <ion-item>
-   <ion-label >Candidate Requirement</ion-label>
-     <ion-row>
-  <ion-col size="12" size-md="6" size-lg="3">
-    
-    <ion-radio-group  >
       <ion-item>
-        <ion-label>Fresher</ion-label>
-        <ion-radio slot="start" value="fresher"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Experienced</ion-label>
-        <ion-radio slot="start" value="experienced"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-  </ion-col>
-</ion-row>
+        <ion-label>Candidate Requirement</ion-label>
+        <ion-row>
+          <ion-col size="12" size-md="6" size-lg="3">
+            <ion-radio-group>
+              <ion-item>
+                <ion-label>Fresher</ion-label>
+                <ion-radio slot="start" value="fresher"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Experienced</ion-label>
+                <ion-radio slot="start" value="experienced"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-col>
+        </ion-row>
 
-<ion-row>
+        <!-- <ion-row>
   <ion-col size="12" size-md="6" size-lg="3">
     <ion-item>
       <ion-label position="floating">Min Experience</ion-label>
@@ -124,125 +124,154 @@
       <ion-input></ion-input>
     </ion-item>
   </ion-col>
-</ion-row>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-     <ion-row>
-    <!-- Select Gender -->
-    <ion-col size="12" size-md="6">
-      <ion-label class="ion-padding-start"><strong>Select Gender <span style="color: red;">*</span></strong></ion-label>
-      <ion-list>
-        <ion-item>
-          <ion-radio slot="start" ></ion-radio>
-          <ion-label>Female</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-radio slot="start" ></ion-radio>
-          <ion-label>Male</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-radio slot="start"></ion-radio>
-          <ion-label>Other</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-col>
-
-    <!-- Candidate Location -->
-    <ion-col size="12" size-md="6">
-      <ion-label class="ion-padding-start"><strong>Candidate Location <span style="color: red;">*</span></strong></ion-label>
-      <ion-list>
-        <ion-item>
-          <ion-checkbox slot="start" ></ion-checkbox>
-          <ion-label>Within 10 KM of my city</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-checkbox slot="start" ></ion-checkbox>
-          <ion-label>Within my city</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-checkbox slot="start" ></ion-checkbox>
-          <ion-label>Anywhere in India</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-</ion-item>
-<ion-item>
-  <ion-grid>
-  <ion-row>
-    <ion-col size="12" size-md="6">
-      <ion-label class="ion-padding-start">Is this a work from home job? </ion-label>
-      <ion-list>
-        <ion-item>
-          <ion-radio slot="start" ></ion-radio>
-          <ion-label>Yes</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-radio slot="start" ></ion-radio>
-          <ion-label>No</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-col>
-
-  </ion-row>
-</ion-grid>
-</ion-item>
-<ion-item>
-  <ion-grid>
-    <ion-row>
-       <ion-col size="12" size-md="6">
-      <ion-select label=" Minimum Qualification"   placeholder="Less than 10th">
-      <ion-select-option value="8">Less than 10th</ion-select-option>
-      <ion-select-option value="10">10th</ion-select-option>
-      <ion-select-option value="12">12th</ion-select-option>
-      <ion-select-option value="dipp">Diploma</ion-select-option>
-      <ion-select-option value="graduate">Graduation</ion-select-option>
-       <ion-select-option value="pg">PG</ion-select-option>
-    </ion-select>
-    </ion-col>
-    </ion-row>
-  </ion-grid>
-    
-</ion-item>
-   <ion-item>
-      <ion-label position="floating">Salary per Month</ion-label>
-      <ion-textarea
-       autoGrow="true">
-        </ion-textarea>
-       </ion-item>
-     <ion-item>
-      <ion-label position="floating">Mention Skills required</ion-label>
-      <ion-textarea
-       autoGrow="true">
-        </ion-textarea>
-       </ion-item>
-       <ion-item>
-      <ion-label position="floating">Salary per Month</ion-label>
-      <ion-textarea
-       autoGrow="true">
-        </ion-textarea>
-       </ion-item>
-       <ion-item>
+</ion-row> -->
+      </ion-item>
+      <ion-item>
         <ion-grid>
           <ion-row>
-            <ion-item>
-              <ion-text>Languages Known</ion-text>
-               <ion-col size="12" size-md="6">
-              <ion-label>Language 1</ion-label>
-              <ion-select>
-                <ion-select-option>Hindi</ion-select-option>
-                <ion-select-option>Angrezi</ion-select-option>
-                <ion-select-option>Punjabi</ion-select-option>
-                <ion-select-option>Marathi</ion-select-option>
-                <ion-select-option>Gujrati</ion-select-option>
-                <ion-select-option>Maithali</ion-select-option>
-                <ion-select-option>Bengali</ion-select-option>
-              </ion-select><span><ion-checkbox>Read</ion-checkbox><ion-checkbox>Write</ion-checkbox></span></ion-col>
-               <!-- <ion-col size="12" size-md="6">
+            <!-- Select Gender -->
+            <ion-col size="12" size-md="6">
+              <ion-label class="ion-padding-start"
+                ><strong
+                  >Select Gender <span style="color: red">*</span></strong
+                ></ion-label
+              >
+              <ion-list>
+                <ion-radio-group>
+                  <ion-item>
+                    <ion-radio
+                      slot="start"
+                      value="female"
+                      id="female"
+                    ></ion-radio>
+                    <ion-label for="female">Female</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-radio slot="start" value="male" id="male"></ion-radio>
+                    <ion-label for="male">Male</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-radio slot="start"></ion-radio>
+                    <ion-label>Other</ion-label>
+                  </ion-item>
+                </ion-radio-group>
+              </ion-list>
+            </ion-col>
+
+            <!-- Candidate Location -->
+            <ion-col size="12" size-md="6">
+              <ion-label class="ion-padding-start"
+                ><strong
+                  >Candidate Location <span style="color: red">*</span></strong
+                ></ion-label
+              >
+              <ion-list>
+                <ion-item>
+                  <ion-checkbox slot="start"></ion-checkbox>
+                  <ion-label>Within 10 KM of my city</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start"></ion-checkbox>
+                  <ion-label>Within my city</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox slot="start"></ion-checkbox>
+                  <ion-label>Anywhere in India</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" size-md="6">
+              <ion-label class="ion-padding-start"
+                >Is this a work from home job?
+              </ion-label>
+              <ion-list>
+                <ion-item>
+                  <ion-radio slot="start"></ion-radio>
+                  <ion-label>Yes</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-radio slot="start"></ion-radio>
+                  <ion-label>No</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" size-md="6">
+              <ion-select
+                label=" Minimum Qualification"
+                placeholder="Less than 10th"
+              >
+                <ion-select-option value="8">Less than 10th</ion-select-option>
+                <ion-select-option value="10">10th</ion-select-option>
+                <ion-select-option value="12">12th</ion-select-option>
+                <ion-select-option value="dipp">Diploma</ion-select-option>
+                <ion-select-option value="graduate"
+                  >Graduation</ion-select-option
+                >
+                <ion-select-option value="pg">PG</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <!-- <ion-item> -->
+      <!-- <ion-label position="floating">Salary per Month</ion-label> -->
+      <!-- <ion-textarea
+       autoGrow="true">
+        </ion-textarea> -->
+      <p>Salary per Month</p>
+      <input type="number" />
+
+      <!-- </ion-item> -->
+      <!-- <ion-item> -->
+      <!-- <ion-label position="floating">Mention Skills required</ion-label> -->
+      <p>Mention Skills required</p>
+      <ion-textarea autoGrow="true"> </ion-textarea>
+      <!-- </ion-item> -->
+      <!-- <ion-item> -->
+      <!-- <ion-label position="floating">Salary per Month</ion-label> -->
+      <!-- <ion-textarea
+       autoGrow="true">
+        </ion-textarea>
+       </ion-item> -->
+      <p>Security Amount</p>
+      <input type="number" />
+      <!-- <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-item> -->
+      <!-- <ion-text>Languages Known</ion-text> -->
+      <p>Languages Known</p>
+      <!-- <ion-col size="12" size-md="6"> -->
+      <ion-label>Language 1</ion-label>
+      <select placeholder="Hindi">
+        <option>Hindi</option>
+        <option>English</option>
+        <option>Punjabi</option>
+        <option>Marathi</option>
+        <option>Gujarati</option>
+        <option>Maitali</option>
+        <option>Bengali</option>
+      </select>
+      <div>
+        <ion-checkbox>Read</ion-checkbox>
+        <ion-checkbox>Write</ion-checkbox>
+      </div>
+      <!-- </ion-col> -->
+      <!-- <ion-col size="12" size-md="6">
               <ion-label>Language 2</ion-label>
-               <ion-select>
+               <ion-select >
                 <ion-select-option>Hindi</ion-select-option>
                 <ion-select-option>Angrezi</ion-select-option>
                 <ion-select-option>Punjabi</ion-select-option>
@@ -252,16 +281,42 @@
                 <ion-select-option>Bengali</ion-select-option>
               </ion-select><span><ion-checkbox>Read</ion-checkbox><ion-checkbox>Write</ion-checkbox></span>
               </ion-col> -->
-            </ion-item>
-          </ion-row>
+      <!--  </ion-item>
+         </ion-row>
         </ion-grid>
-       </ion-item>
-       <ion-item>
-        <ion-text>dgfgg</ion-text>
-       </ion-item>
-     <ion-button expand="full" (click)="nextStep()" [disabled]="!jobForm.valid">
-      Next 
-    </ion-button>
+      </ion-item> -->
+      <p>Job Timing</p>
+      <label for="starttime">Start Time</label>
+      <input type="time" name="starttime" id="starttime" />
+      <label for="endtime">End Time</label>
+      <input type="time" name="endtime" id="endtime" />
+      <p>Interview Details</p>
+      <label for="">Timing</label>
+      <select name="" id="">
+        <option value="">9 se 11</option>
+        <option value="">11 se 1</option>
+        <option value="">3 se 4</option>
+        <option value="">4 se 6</option>
+      </select>
+      <label for="">Day</label>
+      <select name="" id="">
+        <option value="">Sunday</option>
+        <option value="">Monday</option>
+        <option value="">Tuesday</option>
+        <option value="">Wednesday</option>
+        <option value="">Thursday</option>
+        <option value="">Friday</option>
+        <option value="">Saturday</option>
+      </select>
+
+      <ion-button
+        expand="full"
+        (click)="nextStep()"
+        [disabled]="!jobForm.valid"
+      >
+        Next
+      </ion-button>
+    </div>
   </form>
 </ion-content>
 <!-- <ion-list>
@@ -280,6 +335,6 @@
         </ion-row>
       </ion-grid>
 </ion-list> -->
- <!-- [readonly]="isFresher"
+<!-- [readonly]="isFresher"
         [value]=`$event.target.value`
         type="text" -->
