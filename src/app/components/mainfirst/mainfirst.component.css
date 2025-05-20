@@ -32,17 +32,12 @@ h6 {
   border-radius: 5px;
 }
 
-.rws {
-  margin-top: 5px;
-  margin-bottom: 15px;
+.btn {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
 }
 
 .heading {
   color: purple;
-}
-
-.langlabel {
-  margin-top: 10px;
-}/*# sourceMappingURL=formnavbar.component.css.map */
+}/*# sourceMappingURL=mainfirst.component.css.map */

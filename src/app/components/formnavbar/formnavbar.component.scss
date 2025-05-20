@@ -5,38 +5,15 @@
   display: block;
   height: 100%;
 }
-// .custom-input {
-//   --border-color: #ccc;
-//   --highlight-color-focused: green;
-//   --border-radius: 8px;
-//   --padding-start: 12px;
-//   --padding-end: 12px;
-//   border: 1px solid #ccc;
-//   border-radius: 8px;
-//   margin-bottom: 16px;
-
-//   &.valid {
-//     border: 2px solid green;
-//     ion-input {
-//       color: green;
-//     }
-//   }
-
-//   ion-icon {
-//     font-size: 20px;
-//     margin-right: 8px;
-//   }
-
-//   // ion-label {
-//   //   font-size: 14px;
-//   //   color: #555;
-//   // }
-// }
+h6{
+  font-size: 0.5rem;
+}
+.inputf{
+  width: 100%;
+  height: 30px;
+}
 .box{
-  // padding: 20px;
-  // background-color: pink;
-  // margin-left: 7px;
-  // margin-right: 7px;
+
   input{
   width: 100%;
   height: 40px;
@@ -46,11 +23,24 @@ ion-textarea{
     width: 100%;
     border: 2px solid white;
     border-radius: 5px;
-    // height: 100px;
+   
   }
   select{
     width: 100%;
     height: 40px;
     border-radius: 5px;
   }
+}
+
+.rws{
+  margin-top:5px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.heading{
+  color: purple;
+}
+.langlabel{
+  margin-top: 10px;
 }

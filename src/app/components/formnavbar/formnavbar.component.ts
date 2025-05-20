@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit ,Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 
@@ -12,8 +12,16 @@ interface Jobtype {
   standalone: false,
   templateUrl: './formnavbar.component.html',
   styleUrls: ['./formnavbar.component.scss'],
+   template: `
+    <ion-card>
+      <ion-card-header>First Component</ion-card-header>
+      <ion-button (click)="next.emit()">Go to Second</ion-button>
+    </ion-card>
+  `
 })
 export class FormnavbarComponent  implements OnInit {
+   @Input() formData: any;
+  @Output() next = new EventEmitter<void>();
    form = {
     description: ''
   };
@@ -32,6 +40,9 @@ export class FormnavbarComponent  implements OnInit {
     }); }
 
   ngOnInit() {}
+  nextpg(){
+    
+  }
 nextStep() {
     if (this.jobForm.valid) {
       console.log(this.jobForm.value);
