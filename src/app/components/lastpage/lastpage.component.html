@@ -11,14 +11,14 @@
   <ion-toolbar>
     <!-- <ion-searchbar></ion-searchbar> -->
 
-    <ion-segment value="company">
+    <ion-segment value="basic">
       <ion-segment-button value="job" content-id="job">
         <ion-label class="ion-text-wrap" >Job Details</ion-label>
       </ion-segment-button>
       <ion-segment-button value="company" content-id="company">
         <ion-label class="ion-text-wrap">Company Details</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="basic" content-id="basic">
+      <ion-segment-button value="basic" content-id="basic" style="background-color: purple; color:white !important;">
         <ion-label class="ion-text-wrap ">Basic Details</ion-label>
       </ion-segment-button>
     </ion-segment>
@@ -26,7 +26,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-segment-view>
+  <ion-segment-view value="basic" >
   <ion-segment-content id="basic">
    <form>
   <div class="box">
@@ -35,7 +35,7 @@
       <input type="text">
       <p>Email<span style="color: red;">*</span> </p>
       <input type="email" name="" id="">
-      <small>--Candidates job application send on this email</small>
+      <small style="color: green;">--Candidates job application send on this email</small>
       <p>Contact Person Profile<span style="color: red;">*</span></p>
       <select name="" id="" placeholder="General " disabled>
         <option value="">General Manager</option>
@@ -47,14 +47,14 @@
       <p>Registered Mobile Number</p>
       <!-- <span style="border: 2px solid white; height: 20px; width: 20px;">+91</span> -->
       <input type="number" name="" id="" value="">
-      <small> --Candidates call in this number</small>
+      <small style="color: green;"> --Candidates call in this number</small>
       <!-- <p for="terms"> I Accept Terms and Conditions and Privacy Policy<span style="color: red;">*</span></p>
       <input type="checkbox" name="terms" id="terms"  > -->
       <br>
       <ion-checkbox labelPlacement="end" style="margin-top: 10px;">I Accept Terms and Conditions and <br> Privacy Policy</ion-checkbox>
 
      <div class="btn">  <ion-button expand="block" (click)="prev.emit()">Back</ion-button>
-       <ion-button expand="block" color="success" (click)="submit.emit()">Submit</ion-button></div>
+       <ion-button expand="block" class="submitbtn"  color="success" (click)="submit.emit()">Submit</ion-button></div>
     </div>
   </form>
  

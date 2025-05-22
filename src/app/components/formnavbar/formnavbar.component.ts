@@ -40,9 +40,7 @@ export class FormnavbarComponent  implements OnInit {
     }); }
 
   ngOnInit() {}
-  nextpg(){
-    
-  }
+  nextpg(){}
 nextStep() {
     if (this.jobForm.valid) {
       console.log(this.jobForm.value);
@@ -66,7 +64,10 @@ nextStep() {
   compareWith(o1: Jobtype, o2: Jobtype): boolean {
     return o1.id === o2.id;
   }
-
+  handlerequirement(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    console.log('Current value:', JSON.stringify(target.value));
+  }
   handleChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     console.log('Current value:', JSON.stringify(target.value));

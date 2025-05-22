@@ -40,4 +40,8 @@ h6 {
 
 .heading {
   color: purple;
+}
+
+.submitbtn {
+  background-color: rgb(206, 160, 206) !important;
 }/*# sourceMappingURL=lastpage.component.css.map */

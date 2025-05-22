@@ -68,11 +68,11 @@
   <ion-toolbar>
     <!-- <ion-searchbar></ion-searchbar> -->
 
-    <ion-segment value=" company">
-      <ion-segment-button value="job" content-id="job">
+    <ion-segment value="company">
+      <ion-segment-button value="job" content-id="job" >
         <ion-label class="ion-text-wrap">Job Details</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="company" content-id="company">
+      <ion-segment-button value="company" content-id="company" style="background-color: purple; color:white !important;">
         <ion-label class="ion-text-wrap">Company Details</ion-label>
       </ion-segment-button>
       <ion-segment-button value="basic" content-id="basic">
@@ -83,49 +83,51 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-segment-view>
-  <ion-segment-content value="company" id="company">
+  <ion-segment-view value="company">
+  <ion-segment-content id="company">
 <form>
 <div class="box">
   <h2 class="heading">Company Details</h2>
   <p>Company Name<span style="color: red">*</span></p>
-  <input type="text" />
+  <input type="text" value="Stephens Molina Trading" disabled />
 
   <p>Full Address<span style="color: red">*</span></p>
 
-  <input type="text" />
+  <input type="text"  value="sdfjsifhuihuifhh" disabled/>
   <p>State<span style="color: red">*</span></p>
-  <select name="" id="">
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
+  <select name="" id="" disabled>
+    <option value="hr">Haryana</option>
+    <option value="pb">Punjab</option>
+    <option value="ut">Uttarakhand</option>
+    <option value="hp">Himachal Pradesh</option>
+    <option value="up">Uttar Pradesh</option>
   </select>
   <p>City<span style="color: red">*</span></p>
   <select name="" id="">
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
+    <option value="amb">Ambala</option>
+    <option value="kar">Karnal</option>
+    <option value="ynr">Yamuna Nagar</option>
+    <option value="sonipat">Sonipat</option>
   </select>
   <p>Country<span style="color: red">*</span></p>
-  <select name="" id="">
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
+  <select name="" id="" disabled>
+    <option value selected> India</option>
+    <option value="ind">India</option>
+    <option value="is">Israel</option>
+    <option value="ru">Russia</option>
+    <option value="jp">Japan</option>
+    <option value="ar">Argentina</option>
   </select>
   <p>Google map Location</p>
   <input type="text">
   <p>Company Website</p>
-  <input type="text" />
+  <input type="text" value="Cabrera Slater Co" disabled/>
   <p>About the Company</p>
-  <ion-textarea autoGrow="true"> </ion-textarea>
+  <ion-textarea autoGrow="true" value="Amet in error debit" disabled> </ion-textarea>
   <p>Industry Type <span style="color: red">*</span></p>
-  <select name="" id="">
-    <option value=""></option>
+  <select name="" id="" disabled>
+    <option value selected> Automotive</option>
+    <option value="auto">Automotive</option>
     <option value=""></option>
     <option value=""></option>
     <option value=""></option>
@@ -134,7 +136,7 @@
   <p>Number of Employees</p>
   <input type="number" name="" id="" />
   <p>Year of Establishment</p>
-  <input type="number" name="" id="" />
+  <input type="number" name="" id=""  value="2022" disabled/>
    <div class="btn">
     <ion-button  (click)="prev.emit()">Back</ion-button>
   <ion-button (click)="next.emit()">Next</ion-button>
