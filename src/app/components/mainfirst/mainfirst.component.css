@@ -1,5 +1,6 @@
 #supporttitle {
   font-size: 0.7rem;
+  margin-right: 10px;
 }
 
 :host {
@@ -23,8 +24,13 @@ h6 {
 }
 .box ion-textarea {
   width: 100%;
-  border: 2px solid white;
+  border: 2px solid black;
   border-radius: 5px;
+}
+@media (prefers-color-scheme: dark) {
+  .box ion-textarea {
+    border: 2px solid white;
+  }
 }
 .box select {
   width: 100%;

@@ -1,5 +1,6 @@
 #supporttitle{
     font-size: 0.7rem;
+     margin-right: 10px;
 }
 :host {
   display: block;
@@ -19,12 +20,7 @@ h6{
   height: 40px;
   border-radius: 5px;
   }
-ion-textarea{
-    width: 100%;
-    border: 2px solid white;
-    border-radius: 5px;
-    
-  }
+
   select{
     width: 100%;
     height: 40px;
@@ -40,5 +36,8 @@ ion-textarea{
   color: purple;
 }
 .submitbtn{
- background-color: rgb(206, 160, 206) !important;
+
+  --background: purple;
+  color: white !important;
+   border-radius: 5px;
 }

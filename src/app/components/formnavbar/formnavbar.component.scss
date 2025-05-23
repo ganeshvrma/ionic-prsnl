@@ -1,5 +1,8 @@
 #supporttitle{
     font-size: 0.7rem;
+    margin-right: 10px;
+    --background:purple;
+    color: white !important;
 }
 :host {
   display: block;
@@ -21,10 +24,14 @@ h6{
   }
 ion-textarea{
     width: 100%;
-    border: 2px solid white;
+    border: 2px solid black;
     border-radius: 5px;
    
   }
+  @media (prefers-color-scheme: dark) {
+   ion-textarea{
+     border: 2px solid white;
+  }}
   select{
     width: 100%;
     height: 40px;
@@ -50,14 +57,52 @@ ion-textarea{
  }
 .spacebottom{
   margin-bottom: 10px;
- }
- .btnww{
-  height: 60px;
-  width: auto;
-  border-radius:15%;
   border: 2px solid black;
-  text-align: center;
-  align-items: center;
-  padding: 10px;
-  margin: 10px;
+ }
+.qualification-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.qualification-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+
+  ion-button {
+    min-width: 150px;
+    --border-radius: 15px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    text-transform: none;
+    font-size: 14px;
+  }
+
+  ion-button[color="primary"] {
+    --background: #003c9f;
+    --color: white;
+  }
+}
+.candidate-type-toggle,.security-toggle,.job-type-toggle,.gender-type-toggle,.location-toggle,.work-type-toggle {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+
+  ion-button {
+    min-width: 80px;
+    --border-radius: 20px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    font-size: 14px;
+  }
+
+  ion-button[color="primary"] {
+    --background: #003c9f;
+    --color: white;
+  }
 }

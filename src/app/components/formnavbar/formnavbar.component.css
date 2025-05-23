@@ -1,5 +1,8 @@
 #supporttitle {
   font-size: 0.7rem;
+  margin-right: 10px;
+  --background:purple;
+  color: white !important;
 }
 
 :host {
@@ -23,8 +26,13 @@ h6 {
 }
 .box ion-textarea {
   width: 100%;
-  border: 2px solid white;
+  border: 2px solid black;
   border-radius: 5px;
+}
+@media (prefers-color-scheme: dark) {
+  .box ion-textarea {
+    border: 2px solid white;
+  }
 }
 .box select {
   width: 100%;
@@ -54,15 +62,50 @@ h6 {
 
 .spacebottom {
   margin-bottom: 10px;
+  border: 2px solid black;
 }
 
-.btnww {
-  height: 60px;
-  width: auto;
-  border-radius: 15%;
-  border: 2px solid black;
-  text-align: center;
-  align-items: center;
-  padding: 10px;
-  margin: 10px;
+.qualification-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.qualification-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+}
+.qualification-buttons ion-button {
+  min-width: 150px;
+  --border-radius: 15px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  text-transform: none;
+  font-size: 14px;
+}
+.qualification-buttons ion-button[color=primary] {
+  --background: #003c9f;
+  --color: white;
+}
+
+.candidate-type-toggle, .security-toggle, .job-type-toggle, .gender-type-toggle, .location-toggle, .work-type-toggle {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+.candidate-type-toggle ion-button, .security-toggle ion-button, .job-type-toggle ion-button, .gender-type-toggle ion-button, .location-toggle ion-button, .work-type-toggle ion-button {
+  min-width: 80px;
+  --border-radius: 20px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  font-size: 14px;
+}
+.candidate-type-toggle ion-button[color=primary], .security-toggle ion-button[color=primary], .job-type-toggle ion-button[color=primary], .gender-type-toggle ion-button[color=primary], .location-toggle ion-button[color=primary], .work-type-toggle ion-button[color=primary] {
+  --background: #003c9f;
+  --color: white;
 }/*# sourceMappingURL=formnavbar.component.css.map */

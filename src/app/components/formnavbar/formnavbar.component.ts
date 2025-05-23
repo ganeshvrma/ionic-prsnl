@@ -2,11 +2,6 @@ import { Component,Input, OnInit ,Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 
-interface Jobtype {
-  id: number;
-  name: string;
-  type: string;
-}
 @Component({
   selector: 'app-formnavbar',
   standalone: false,
@@ -30,13 +25,8 @@ export class FormnavbarComponent  implements OnInit {
   constructor( private fb: FormBuilder,
     private navCtrl: NavController)
      {this.jobForm = this.fb.group({
-      jobtitle: ['', Validators.required],
-      // jobRole: [{ value: 'Software Development', disabled: true }, Validators.required],
-      city: ['', Validators.required],
-      // locality: ['', Validators.required],
-      // salaryFrom: ['', [Validators.required, Validators.min(1)]],
-      // salaryTo: ['', [Validators.required, Validators.min(1)]],
-      // bonus: ['no']
+     
+      
     }); }
 
   ngOnInit() {}
@@ -47,23 +37,81 @@ nextStep() {
       this.navCtrl.navigateForward(''); // Next step
     }
   }
-  jobtypes: Jobtype[] = [
-    {
-      id: 1,
-      name: 'Full-time',
-      type: 'jobtype',
-    },
-    {
-      id: 2,
-      name: 'Part-time',
-      type: 'jobtype',
-    },
-    
-  ];
+ 
+//qualification options
+qualificationLevels: string[] = [
+  '<10th pass',
+  '10th pass ',
+  'Diploma',
+  '12th pass ',
+  'Graduate','Post Graduate'
+];
 
-  compareWith(o1: Jobtype, o2: Jobtype): boolean {
-    return o1.id === o2.id;
+selectedQualifications: string[] = [];
+
+toggleSelection(level: string) {
+  const index = this.selectedQualifications.indexOf(level);
+  if (index > -1) {
+    // Deselect
+    this.selectedQualifications.splice(index, 1);
+  } else {
+    // Select
+    this.selectedQualifications.push(level);
   }
+}
+
+isSelected(level: string): boolean {
+  return this.selectedQualifications.includes(level);
+  console.log("qualification" ,level);
+}
+
+//work from home
+isWorkFromHome: string = ''; // Holds selected value ('yes' or 'no')
+
+selectWorkType(choice: string) {
+  this.isWorkFromHome = choice;
+  console.log("Work from home : ", choice);
+}
+//gender
+isgender: string = ''; // Holds selected value ('yes' or 'no')
+
+selectgenderType(gender: string) {
+  this.isgender = gender;
+  console.log("Gender is: ", gender);
+} 
+//jobtype
+jobtype: string = ''; // Holds selected value ('yes' or 'no')
+
+selectjobType(time: string) {
+  this.jobtype = time;
+  console.log("Job type :", time);
+} 
+//location
+jobLocations: string[] = [
+  'Within 10 KM of my city',
+  'Within my city',
+  'Anywhere in India'
+];
+selectedLocation: string = '';
+selectLocation(location: string) {
+  this.selectedLocation = location;
+  console.log("candidate location range : ",location);
+}
+//security given
+issecuritygiven: string = ''; // Holds selected value ('yes' or 'no')
+
+selectsecurity(security: string) {
+  this.issecuritygiven = security;
+  console.log("Security deposit :", security);
+} 
+//candidate type
+candidatetype: string = ''; // Holds selected value ('yes' or 'no')
+
+selectcanType(cantype: string) {
+  this.candidatetype = cantype;
+  console.log( "candidate type :",cantype);
+} 
+ //candidate type ends
   handlerequirement(event: Event): void {
     const target = event.target as HTMLInputElement;
     console.log('Current value:', JSON.stringify(target.value));
@@ -72,31 +120,5 @@ nextStep() {
     const target = event.target as HTMLInputElement;
     console.log('Current value:', JSON.stringify(target.value));
   }
-  experienceType: string = '';
-  minExperience: string = '';
-  maxExperience: string = '';
-  isFresher: boolean = false;
-
-  // onExperienceChange() {
-  //   if (this.experienceType === 'fresher') {
-  //     this.minExperience = 'Fresher';
-  //     this.maxExperience = 'Fresher';
-  //     this.isFresher = true;
-  //   } else {
-  //     this.minExperience = '';
-  //     this.maxExperience = '';
-  //     this.isFresher = false;
-  //   }
-  // }
-  gender = {
-    female: false,
-    male: false,
-    other: false
-  };
-
-  location = {
-    km10: false,
-    myCity: false,
-    india: false
-  };
+ 
 }

@@ -3,13 +3,17 @@
     <ion-title style="padding-bottom: 15px">1/3</ion-title>
     <ion-title>Post Job </ion-title>
 
-    <ion-button slot="end" id="supporttitle">
-      <ion-icon name="call-outline" ></ion-icon>Call customer support</ion-button
+    <ion-button slot="end" id="supporttitle" >
+      <ion-icon name="call-outline"></ion-icon>Call customer support</ion-button
     >
   </ion-toolbar>
   <ion-toolbar>
     <ion-segment value="job">
-      <ion-segment-button value="job" content-id="job" style="background-color: purple; color:white !important;">
+      <ion-segment-button
+        value="job"
+        content-id="job"
+        style="background-color: purple; color: white !important"
+      >
         <ion-label class="ion-text-wrap">Job Details</ion-label>
       </ion-segment-button>
       <ion-segment-button value="company" content-id="company">
@@ -21,273 +25,238 @@
     </ion-segment>
   </ion-toolbar>
 </ion-header>
-
 <ion-content class="ion-padding">
-  <!-- <ion-progress-bar value="0.33" color="primary"></ion-progress-bar> -->
-<ion-segment-view value="job">
-   <ion-segment-content id="job">
-  <form [formGroup]="jobForm">
-    <div class="box">
-      <h2 class="heading">Job Details</h2>
-      <p>Job Title <span style="color: red;">*</span></p>
-      <input type="text" required />
-      <p>Job Category <span style="color: red;">*</span></p>
-      <select name="" id="" style="margin-bottom: 14px">
-        <option value selected> Select Job Category</option>
-        <option value="it">IT</option>
-        <option value="health">Healthcare</option>
-        <option value="aviation">Aviation</option>
-        <option value="finance">Finance</option>
-      </select>
+  <ion-segment-view value="job">
+    <ion-segment-content id="job">
+      <form [formGroup]="jobForm"  >
+        <div class="box">
+          <h2 class="heading">Job Details</h2>
+          <p>Job Title <span style="color: red">*</span></p>
+          <input type="text" required />
+          <p>Job Category <span style="color: red">*</span></p>
+          <select name="" id="" style="margin-bottom: 14px">
+            <option value selected>Select Job Category</option>
+            <option value="it">IT</option>
+            <option value="health">Healthcare</option>
+            <option value="aviation">Aviation</option>
+            <option value="finance">Finance</option>
+          </select>
+          <ion-label position="fixed" slot="start"
+            >Job Type <span style="color: red">*</span>
+          </ion-label>
+    <div class="job-type-toggle">
+            <ion-button
+              shape="round"
+              [fill]="jobtype === 'fulltime' ? 'solid' : 'outline'"
+              [color]="jobtype === 'fulltime' ? 'primary' : 'medium'"
+              (click)="selectjobType('fulltime')"
+            >
+              Full Time
+            </ion-button>
 
-    
-      <!-- <ion-list> -->
-        <!-- <ion-item> -->
-          <ion-label position="fixed" slot="start">Job Type <span style="color: red;">*</span> </ion-label>
-          <!-- <ion-radio-group
-            [compareWith]="compareWith"
-           
-          > -->
-          <ion-item>
-            @for (jobtype of jobtypes; track jobtype.id) {
-            <!-- <ion-item  > -->
-              <!-- <ion-radio id [value]="jobtype">{{ jobtype.name }}</ion-radio> -->
-               <button    (ionChange)="handleChange($event)"  class="btnww" id [value]="jobtype">{{ jobtype.name }}</button>
-            <!-- </ion-item> -->
-            }</ion-item>
-          <!-- </ion-radio-group> -->
-        <!-- </ion-item> -->
-      <!-- </ion-list> -->
-      <p>No. of Positions Open <span style="color: red;">*</span></p>
-      <input type="number" />
-      <p>Job Description <span style="color: red;">*</span></p>
-      <ion-textarea autoGrow="true" class="spacebottom"> </ion-textarea>
-      <!-- <ion-item>
-       
-        <ion-row>
-          <ion-col size="12" size-md="6" size-lg="3"> -->
-             <ion-label>Candidate Requirement <span style="color: red;">*</span></ion-label>
-             <ion-list>
-            <ion-radio-group>
-              <ion-item>
-                <!-- <ion-label>Fresher</ion-label>
-                <ion-radio slot="start" value="fresher"></ion-radio> -->
-                <button class="btnww" value="fresher">Fresher</button>
-                <button class="btnww" value="experienced" onclick="handlerequirement($event)">Experienced</button>
+            <ion-button
+              shape="round"
+              [fill]="jobtype === 'parttime' ? 'solid' : 'outline'"
+              [color]="jobtype === 'parttime' ? 'primary' : 'medium'"
+              (click)="selectjobType('parttime')"
+            >
+            Part Time
+            </ion-button>
+          </div>
+         
+          <p>No. of Positions Open <span style="color: red">*</span></p>
+          <input type="number" />
+          <p>Job Description <span style="color: red">*</span></p>
+          <ion-textarea autoGrow="true" class="spacebottom"> </ion-textarea>
+          
+          <p>Candidate Requirement <span style="color: red">*</span></p>
+          <div class="candidate-type-toggle">
+            <ion-button
+              shape="round"
+              [fill]="candidatetype === 'fresher' ? 'solid' : 'outline'"
+              [color]="candidatetype === 'fresher' ? 'primary' : 'medium'"
+              (click)="selectcanType('fresher')"
+            >
+              Fresher
+            </ion-button>
 
-              </ion-item>
-              <!-- <ion-item> -->
-                <!-- <ion-label >Experienced</ion-label>
-                <ion-radio slot="start" value="experienced" ></ion-radio> -->
-                
-              <!-- </ion-item> -->
-            </ion-radio-group>
-             </ion-list>
-          <!-- </ion-col>
-        </ion-row>
+            <ion-button
+              shape="round"
+              [fill]="candidatetype === 'experienced' ? 'solid' : 'outline'"
+              [color]="candidatetype === 'experienced' ? 'primary' : 'medium'"
+              (click)="selectcanType('experienced')"
+            >
+          Experienced
+            </ion-button>
+          </div> 
+          <ion-label>
+            Select Gender <span style="color: red">*</span>
+          </ion-label>
+          
+          <div class="gender-type-toggle">
+            <ion-button
+              shape="round"
+              [fill]="isgender === 'male' ? 'solid' : 'outline'"
+              [color]="isgender === 'male' ? 'primary' : 'medium'"
+              (click)="selectgenderType('male')"
+            >
+              Male
+            </ion-button>
 
-      </ion-item> -->
-      <!-- <ion-item>
-        <ion-grid>
-          <ion-row> -->
-            <!-- Select Gender -->
-            <!-- <ion-col size="12" size-md="6"> -->
-        <ion-label 
-                >
-                  Select Gender <span style="color: red">*</span>
-                </ion-label
-              >
-              <ion-list>
-                <ion-radio-group>
-                  <ion-item>
-                    <button class="btnww" value="male">Male</button>
-                    <button class="btnww" value="feamle">Female</button>
-                    <!-- <ion-radio
-                      slot="start"
-                      value="female"
-                      id="female"
-                    ></ion-radio>
-                    <ion-label for="female">Female</ion-label> -->
-                  </ion-item>
-                  <!-- <ion-item>
-                    <ion-radio slot="start" value="male" id="male"></ion-radio>
-                    <ion-label for="male">Male</ion-label>
-                  </ion-item> -->
-                  <!-- <ion-item>
-                    <ion-radio slot="start"></ion-radio>
-                    <ion-label>Other</ion-label>
-                  </ion-item> -->
-                </ion-radio-group>
-              </ion-list>
-            <!-- </ion-col> -->
+            <ion-button
+              shape="round"
+              [fill]="isgender === 'female' ? 'solid' : 'outline'"
+              [color]="isgender === 'female' ? 'primary' : 'medium'"
+              (click)="selectgenderType('female')"
+            >
+            Female
+            </ion-button>
+          </div>
+          <p>Candidate Location</p>
+          <div class="location-toggle">
+            <ion-button
+              *ngFor="let location of jobLocations"
+              shape="round"
+              [fill]="selectedLocation === location ? 'solid' : 'outline'"
+              [color]="selectedLocation === location ? 'primary' : 'medium'"
+              (click)="selectLocation(location)"
+            >
+              {{ location }}
+            </ion-button>
+          </div> 
+          <p>
+            Is this a work from home job? <span style="color: red">*</span>
+          </p>
 
-            <!-- Candidate Location -->
-            <!-- <ion-col size="12" size-md="6"> -->
-              <ion-label 
-                >
-                  Candidate Location <span style="color: red">*</span>
-                </ion-label
-              >
-              <ion-list>
-                <ion-item>
-                  <button class="btnww">Within 10 KM of my city</button>
-                  <button class="btnww">Within my city</button>
-                  <button class="btnww">Anywhere in India</button>
-                  <!-- <ion-checkbox slot="start"></ion-checkbox>
-                  <ion-label>Within 10 KM of my city</ion-label> -->
-                </ion-item>
-                <!-- <ion-item>
-                  <ion-checkbox slot="start"></ion-checkbox>
-                  <ion-label>Within my city</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-checkbox slot="start"></ion-checkbox>
-                  <ion-label>Anywhere in India</ion-label>
-                </ion-item> -->
-              </ion-list>
-            <!-- </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item> -->
-      <!-- <ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col size="12" size-md="6"> -->
-              <ion-label 
-                >Is this a work from home job?<span style="color: red;">*</span>
-              </ion-label>
-              <!-- <ion-list> -->
-                 <!-- <ion-radio-group> -->
-                <ion-item>
-                  <button class="btnww" value="yes">Yes</button>
-                  <button class="btnww" value="no">No</button>
-                  <!-- <ion-radio slot="start"></ion-radio>
-                  <ion-label>Yes</ion-label> -->
-                </ion-item>
-                <!-- <ion-item>
-                  <ion-radio slot="start"></ion-radio>
-                  <ion-label>No</ion-label>
-                </ion-item> -->
-                <!-- </ion-radio-group> -->
-              <!-- </ion-list> -->
-            <!-- </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item> -->
-      <!-- <ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col size="12" size-md="6"> -->
-              <!-- <ion-list> -->
-                <p>Minimum Qualification</p>
-                <button class="btnww" value="eight">Less than 10th</button>
-                <button class="btnww" value="tenth">10th</button>
-                <button  class="btnww" value="twel">12th</button>
-                <button  class="btnww" value="dip">Diploma</button>
-                <button class="btnww" value="gra">Graduation</button>
-                <button class="btnww" value="pg"> Post Graduation</button>
-              <!-- </ion-list> -->
-              <!-- <ion-select
-                label=" Minimum Qualification"
-               placeholder="Select option"
-              >
-           
-                <ion-select-option value="8">Less than 10th</ion-select-option>
-                <ion-select-option value="10">10th</ion-select-option>
-                <ion-select-option value="12">12th</ion-select-option>
-                <ion-select-option value="dipp">Diploma</ion-select-option>
-                <ion-select-option value="graduate">Graduation</ion-select-option
-                >
-                <ion-select-option value="pg">PG</ion-select-option>
-              </ion-select> -->
-            <!-- </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item> -->
-      
-      <p>Salary per Month <span style="color: red;">*</span></p>
-      <input type="number" />
+          <div class="work-type-toggle">
+            <ion-button
+              shape="round"
+              [fill]="isWorkFromHome === 'yes' ? 'solid' : 'outline'"
+              [color]="isWorkFromHome === 'yes' ? 'primary' : 'medium'"
+              (click)="selectWorkType('yes')"
+            >
+              Yes
+            </ion-button>
 
-    
-      <p>Mention Skills required <span style="color: red;">*</span></p>
-      <ion-textarea autoGrow="true"> </ion-textarea>
-     
-      <p>Is there any security deposit charged to the candidate (Eg. Uniform, Kit, Bike)? <span style="color: red;">*</span></p>
-     <ion-item> <button class="btnww" value="yes">Yes</button>
-      <button class="btnww" value="no">No</button>
-   </ion-item>
-      <p>Languages Known <span style="color: red;">*</span></p>
-     
-      <ion-label >Language 1</ion-label>
-      <select class="langlabel"  >
-        <option value selected>Select option</option>
-        <option value="Hindi">Hindi</option>
-        <option value="English">English</option>
-        <option value="Punjabi">Punjabi</option>
-        <option value="Marathi">Marathi</option>
-        <option value="Gujarati">Gujarati</option>
-        <option value="Maitali">Maitali</option>
-        <option value="Bengali">Bengali</option>
-      </select>
-      <div class="rws" >
-        <ion-checkbox>Read</ion-checkbox>
-        <ion-checkbox>Write</ion-checkbox>
-        <ion-checkbox>Speak</ion-checkbox>
-      </div>
-            <ion-label >Language 2</ion-label>
-              <select class="langlabel">
-              <option value selected>Select option</option>
-                <option value="Hindi">Hindi</option>
-                <option value="English">English</option>
-                <option value="Punjabi">Punjabi</option>
-                <option value="Marathi">Marathi</option>
-                <option value="Gujrati">Gujrati</option>
-                <option value="Maithali">Maithali</option>
-                <option value="Bengali">Bengali</option>
-              </select>
-              <div class="rws">
-                <ion-checkbox>Read</ion-checkbox>
-                <ion-checkbox>Write</ion-checkbox>
-                <ion-checkbox>Speak</ion-checkbox>
-              </div>
-             
-       
-      <p>Job Timing <span style="color: red;">*</span></p>
-      <label for="starttime">Start Time</label>
-      <input type="time" name="starttime" id="starttime"  class="jdinputspace"/>
-      <label for="endtime">End Time</label>
-      <input type="time" name="endtime" id="endtime"  class="jdinputspace" />
-      <p>Interview Details <span style="color: red;">*</span></p>
-      <label for="time">Timing</label>
-      <select name="" id="time"   class="jdinputspace">
-        <option value selected >Select Timings</option>
-        <option value="9">9:00 AM - 11:00 AM</option>
-        <option value="11">11:00 AM- 1:00 PM</option>
-        <option value="14">2:00 PM - 4:00 PM</option>
-        <option value="16">4:00 PM - 6:00 PM</option>
-      </select>
-      <label for="day">Day</label>
-      <select id="day"   class="jdinputspace">
-        <option value selected>Select Day</option>
-        <option value="sun">Sunday</option>
-        <option value="mon">Monday</option>
-        <option value="tue">Tuesday</option>
-        <option value="wed">Wednesday</option>
-        <option value="thurs">Thursday</option>
-        <option value="fri">Friday</option>
-        <option value="sat">Saturday</option>
-      </select>
+            <ion-button
+              shape="round"
+              [fill]="isWorkFromHome === 'no' ? 'solid' : 'outline'"
+              [color]="isWorkFromHome === 'no' ? 'primary' : 'medium'"
+              (click)="selectWorkType('no')"
+            >
+              No
+            </ion-button>
+          </div>
+          <p>Minimum Qualification <span style="color: red">*</span></p>
+          <div class="qualification-buttons">
+            <ion-button
+              *ngFor="let level of qualificationLevels"
+              [fill]="isSelected(level) ? 'solid' : 'outline'"
+              [color]="isSelected(level) ? 'primary' : 'medium'"
+              shape="round"
+              (click)="toggleSelection(level)"
+            >
+              {{ level }}
+            </ion-button>
+          </div>
+          <p>Salary per Month <span style="color: red">*</span></p>
+          <input type="number" />
 
-      <ion-button
-        expand="full"
-        (click)="next.emit()"
-      >
-        Next
-      </ion-button>
-    </div>
-    
-  </form>
- 
-  </ion-segment-content>
-</ion-segment-view>
+          <p>Mention Skills required <span style="color: red">*</span></p>
+          <ion-textarea autoGrow="true" class="txtarea"> </ion-textarea>
+
+          <p>
+            Is there any security deposit charged to the candidate (Eg. Uniform,
+            Kit, Bike)? <span style="color: red">*</span>
+          </p>
+          <div class="security-toggle">
+            <ion-button
+              shape="round"
+              [fill]="issecuritygiven === 'yes' ? 'solid' : 'outline'"
+              [color]="issecuritygiven === 'yes' ? 'primary' : 'medium'"
+              (click)="selectsecurity('yes')"
+            >
+              Yes
+            </ion-button>
+
+            <ion-button
+              shape="round"
+              [fill]="issecuritygiven === 'no' ? 'solid' : 'outline'"
+              [color]="issecuritygiven === 'no' ? 'primary' : 'medium'"
+              (click)="selectsecurity('no')"
+            >
+              No
+            </ion-button>
+          </div>
+          <p>Languages Known <span style="color: red">*</span></p>
+
+          <ion-label>Language 1</ion-label>
+          <select class="langlabel">
+            <option value selected>Select option</option>
+            <option value="Hindi">Hindi</option>
+            <option value="English">English</option>
+            <option value="Punjabi">Punjabi</option>
+            <option value="Marathi">Marathi</option>
+            <option value="Gujarati">Gujarati</option>
+            <option value="Maitali">Maitali</option>
+            <option value="Bengali">Bengali</option>
+          </select>
+          <div class="rws">
+            <ion-checkbox>Read</ion-checkbox>
+            <ion-checkbox>Write</ion-checkbox>
+            <ion-checkbox>Speak</ion-checkbox>
+          </div>
+          <ion-label>Language 2</ion-label>
+          <select class="langlabel">
+            <option value selected>Select option</option>
+            <option value="Hindi">Hindi</option>
+            <option value="English">English</option>
+            <option value="Punjabi">Punjabi</option>
+            <option value="Marathi">Marathi</option>
+            <option value="Gujrati">Gujrati</option>
+            <option value="Maithali">Maithali</option>
+            <option value="Bengali">Bengali</option>
+          </select>
+          <div class="rws">
+            <ion-checkbox>Read</ion-checkbox>
+            <ion-checkbox>Write</ion-checkbox>
+            <ion-checkbox>Speak</ion-checkbox>
+          </div>
+
+          <p>Job Timing <span style="color: red">*</span></p>
+          <label for="starttime">Start Time</label>
+          <input
+            type="time"
+            name="starttime"
+            id="starttime"
+            class="jdinputspace"
+          />
+          <label for="endtime">End Time</label>
+          <input type="time" name="endtime" id="endtime" class="jdinputspace" />
+          <p>Interview Details <span style="color: red">*</span></p>
+          <label for="time">Timing</label>
+          <select name="" id="time" class="jdinputspace">
+            <option value selected>Select Timings</option>
+            <option value="9">9:00 AM - 11:00 AM</option>
+            <option value="11">11:00 AM- 1:00 PM</option>
+            <option value="14">2:00 PM - 4:00 PM</option>
+            <option value="16">4:00 PM - 6:00 PM</option>
+          </select>
+          <label for="day">Day</label>
+          <select id="day" class="jdinputspace">
+            <option value selected>Select Day</option>
+            <option value="sun">Sunday</option>
+            <option value="mon">Monday</option>
+            <option value="tue">Tuesday</option>
+            <option value="wed">Wednesday</option>
+            <option value="thurs">Thursday</option>
+            <option value="fri">Friday</option>
+            <option value="sat">Saturday</option>
+          </select>
+
+          <ion-button expand="full" (click)="next.emit()"> Next </ion-button>
+        </div>
+      </form>
+    </ion-segment-content>
+  </ion-segment-view>
 </ion-content>
