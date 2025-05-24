@@ -69,10 +69,14 @@
     <!-- <ion-searchbar></ion-searchbar> -->
 
     <ion-segment value="company">
-      <ion-segment-button value="job" content-id="job" >
+      <ion-segment-button value="job" content-id="job">
         <ion-label class="ion-text-wrap">Job Details</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="company" content-id="company" style="background-color: purple; color:white !important;">
+      <ion-segment-button
+        value="company"
+        content-id="company"
+        style="background-color: purple; color: white !important"
+      >
         <ion-label class="ion-text-wrap">Company Details</ion-label>
       </ion-segment-button>
       <ion-segment-button value="basic" content-id="basic">
@@ -84,66 +88,192 @@
 
 <ion-content class="ion-padding">
   <ion-segment-view value="company">
-  <ion-segment-content id="company">
-<form>
-<div class="box">
-  <h2 class="heading">Company Details</h2>
-  <p>Company Name<span style="color: red">*</span></p>
-  <input type="text" value="Stephens Molina Trading" disabled />
-
-  <p>Full Address<span style="color: red">*</span></p>
-
-  <input type="text"  value="sdfjsifhuihuifhh" disabled/>
-  <p>State<span style="color: red">*</span></p>
-  <select name="" id="" disabled>
-    <option value="hr">Haryana</option>
-    <option value="pb">Punjab</option>
-    <option value="ut">Uttarakhand</option>
-    <option value="hp">Himachal Pradesh</option>
-    <option value="up">Uttar Pradesh</option>
-  </select>
-  <p>City<span style="color: red">*</span></p>
-  <select name="" id="">
-    <option value="amb">Ambala</option>
-    <option value="kar">Karnal</option>
-    <option value="ynr">Yamuna Nagar</option>
-    <option value="sonipat">Sonipat</option>
-  </select>
-  <p>Country<span style="color: red">*</span></p>
-  <select name="" id="" disabled>
-    <option value selected> India</option>
-    <option value="ind">India</option>
-    <option value="is">Israel</option>
-    <option value="ru">Russia</option>
-    <option value="jp">Japan</option>
-    <option value="ar">Argentina</option>
-  </select>
-  <p>Google map Location</p>
-  <input type="text">
-  <p>Company Website</p>
-  <input type="text" value="Cabrera Slater Co" disabled/>
-  <p>About the Company</p>
-  <ion-textarea autoGrow="true" value="Amet in error debit" disabled> </ion-textarea>
-  <p>Industry Type <span style="color: red">*</span></p>
-  <select name="" id="" disabled>
-    <option value selected> Automotive</option>
-    <option value="auto">Automotive</option>
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
-    <option value=""></option>
-  </select>
-  <p>Number of Employees</p>
-  <input type="number" name="" id="" />
-  <p>Year of Establishment</p>
-  <input type="number" name="" id=""  value="2022" disabled/>
-   <div class="btn">
-    <ion-button  (click)="prev.emit()">Back</ion-button>
-  <ion-button (click)="next.emit()">Next</ion-button>
-   </div>
-</div>
-</form>
-
-</ion-segment-content>
-</ion-segment-view>
+    <ion-segment-content id="company">
+      <form   [formGroup]="company" (ngSubmit)="nextStep2()">
+        <div class="box">
+          <h2 class="heading">Company Details</h2>
+          <p>Company Name<span style="color: red">*</span></p>
+          <input type="text" value="$event.target.value" formControlName="companyname" />
+          <ion-text
+            color="danger"
+            *ngIf="
+              company.get('companyname')?.touched &&
+              company.get('companyname')?.invalid
+            "
+          >
+            <small *ngIf="company.get('companyname')?.errors?.['required']"
+              >Company name is required</small
+            >
+          </ion-text>
+          <p>Full Address<span style="color: red">*</span></p>
+          <input
+            type="text"
+            value="sdfjsifhuihuifhh"
+            formControlName="companyaddress"
+          />
+          <ion-text
+            color="danger"
+            *ngIf="
+              company.get('companyaddress')?.touched &&
+              company.get('companyaddress')?.invalid
+            "
+          >
+            <small *ngIf="company.get('companyaddress')?.errors?.['required']"
+              >Company address is required</small
+            >
+          </ion-text>
+          <p>State<span style="color: red">*</span></p>
+          <select name="" id="" formControlName="companystate">
+            <option value selected>Select one</option>
+            <option value="hr">Haryana</option>
+            <option value="pb">Punjab</option>
+            <option value="ut">Uttarakhand</option>
+            <option value="hp">Himachal Pradesh</option>
+            <option value="up">Uttar Pradesh</option>
+          </select>
+          <ion-text
+            color="danger"
+            *ngIf="
+              company.get('companystate')?.touched &&
+              company.get('companystate')?.invalid
+            "
+          >
+            <small *ngIf="company.get('companystate')?.errors?.['required']"
+              >Feild is required</small
+            >
+          </ion-text>
+          <p>City<span style="color: red">*</span></p>
+          <select name="" id="" formControlName="companycity">
+            <option value selected>Select one</option>
+            <option value="amb">Ambala</option>
+            <option value="kar">Karnal</option>
+            <option value="ynr">Yamuna Nagar</option>
+            <option value="sonipat">Sonipat</option>
+          </select>
+          <ion-text
+            color="danger"
+            *ngIf="
+              company.get('companycity')?.touched &&
+              company.get('companycity')?.invalid
+            "
+          >
+            <small *ngIf="company.get('companycity')?.errors?.['required']"
+              >Feild is required</small
+            >
+          </ion-text>
+          <p>Country<span style="color: red">*</span></p>
+          <select name="" id="" formControlName="companycountry">
+            <option value selected>Select one</option>
+            <option value="ind">India</option>
+            <option value="is">Israel</option>
+            <option value="ru">Russia</option>
+            <option value="jp">Japan</option>
+            <option value="ar">Argentina</option>
+          </select>
+          <ion-text
+            color="danger"
+            *ngIf="
+              company.get('companycountry')?.touched &&
+              company.get('companycountry')?.invalid
+            "
+          >
+            <small *ngIf="company.get('companycountry')?.errors?.['required']"
+              >Feild is required</small
+            >
+          </ion-text>
+          <p>Google map Location</p>
+          <input type="text" />
+          <p>Company Website</p>
+          <input type="text" value="" formControlName="companywebsite" />
+          <ion-text
+            color="danger"
+            *ngIf="
+              company.get('companywebsite')?.touched &&
+              company.get('companywebsite')?.invalid
+            "
+          >
+            <small *ngIf="company.get('companywebsite')?.errors?.['required']"
+              >Feild is required</small
+            >
+          </ion-text>
+          <p>About the Company</p>
+          <ion-textarea
+            autoGrow="true"
+            value="Amet in error debit"
+            formControlName="companydesc"
+          >
+          </ion-textarea>
+          <ion-text
+            color="danger"
+            *ngIf="
+              company.get('companydesc')?.touched &&
+              company.get('companydesc')?.invalid
+            "
+          >
+            <small *ngIf="company.get('companydesc')?.errors?.['required']"
+              >Feild is required</small
+            >
+          </ion-text>
+          <p>Industry Type <span style="color: red">*</span></p>
+          <select name="" id="" formControlName="industrytype">
+            <option value selected>Select one</option>
+            <option value="auto">Automotive</option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+          </select>
+          <ion-text
+            color="danger"
+            *ngIf="
+              company.get('industrytype')?.touched &&
+              company.get('industrytype')?.invalid
+            "
+          >
+            <small *ngIf="company.get('industrytype')?.errors?.['required']"
+              >Feild is required</small
+            >
+          </ion-text>
+          <p>Number of Employees</p>
+          <input type="number" name="" id="" formControlName="numemployees" />
+          <ion-text
+            color="danger"
+            *ngIf="
+              company.get('numemployees')?.touched &&
+              company.get('numemployees')?.invalid
+            "
+          >
+            <small *ngIf="company.get('numemployees')?.errors?.['required']"
+              >Feild is required</small
+            >
+          </ion-text>
+          <p>Year of Establishment</p>
+          <input
+            type="number"
+            name=""
+            id=""
+            value="2022"
+            formControlName="companyestb"
+          />
+          <ion-text
+            color="danger"
+            *ngIf="
+              company.get('companyestb')?.touched &&
+              company.get('companyestb')?.invalid
+            "
+          >
+            <small *ngIf="company.get('companyestb')?.errors?.['required']"
+              >Feild is required</small
+            >
+          </ion-text>
+          <div class="btn">
+            <ion-button (click)="prev.emit()">Back</ion-button>
+            <ion-button (click)="submit.emit()" type="submit" [disabled]="company.invalid"
+              >Next</ion-button
+            >
+          </div>
+        </div>
+      </form>
+    </ion-segment-content>
+  </ion-segment-view>
 </ion-content>

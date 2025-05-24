@@ -16,7 +16,7 @@ import { NavController } from '@ionic/angular';
 })
 export class FormnavbarComponent  implements OnInit {
    @Input() formData: any;
-  @Output() next = new EventEmitter<void>();
+  @Output() submit = new EventEmitter<void>();
    form = {
     description: ''
   };
@@ -25,19 +25,46 @@ export class FormnavbarComponent  implements OnInit {
   constructor( private fb: FormBuilder,
     private navCtrl: NavController)
      {this.jobForm = this.fb.group({
-     
+     jobTitle: ['', Validators.required,Validators.minLength(3)],
+    jobCategory: ['', Validators.required],
+  jobType: ['', Validators.required],
+  positionsOpen: ['', [Validators.required, Validators.min(1)]],
+  jobDescription: ['', Validators.required],
+  candidatetype: ['', Validators.required],
+  isgender: ['', Validators.required],
+  locations: ['', Validators.required],
+  WorkFromHome: ['', Validators.required],
+  qualification: ['', Validators.required],
+  salary: ['', Validators.required],
+  skills: ['', Validators.required],
+  issecuritygiven: ['', Validators.required],
+  language1: ['', Validators.required],
+  language2: ['', Validators.required],
+  jobStartTime: ['', Validators.required],
+  jobEndTime: ['', Validators.required],
+  interviewTime: ['', Validators.required],
+  interviewDay: ['', Validators.required]
       
     }); }
 
   ngOnInit() {}
   nextpg(){}
-nextStep() {
-    if (this.jobForm.valid) {
-      console.log(this.jobForm.value);
-      this.navCtrl.navigateForward(''); // Next step
-    }
+  // nextStep() {
+  //   if (this.jobForm.valid) {
+  //     console.log(this.jobForm.value);
+  //     this.navCtrl.navigateForward(''); // Next step
+  //   }
+  // }
+ nextStep() {
+  if (this.jobForm.valid) {
+    console.log('Form data:', this.jobForm.value);
+    // this.navCtrl.navigateForward('next-page'); // Replace with actual route
+  } else {
+    this.jobForm.markAllAsTouched();
+    console.log('Form is invalid');
   }
- 
+}
+
 //qualification options
 qualificationLevels: string[] = [
   '<10th pass',
@@ -62,14 +89,14 @@ toggleSelection(level: string) {
 
 isSelected(level: string): boolean {
   return this.selectedQualifications.includes(level);
-  console.log("qualification" ,level);
+  
 }
-
 //work from home
-isWorkFromHome: string = ''; // Holds selected value ('yes' or 'no')
+WorkFromHome: string = ''; // Holds selected value ('yes' or 'no')
 
 selectWorkType(choice: string) {
-  this.isWorkFromHome = choice;
+  this.WorkFromHome = choice;
+  this.jobForm.get('WorkFromHome')?.setValue(choice);
   console.log("Work from home : ", choice);
 }
 //gender
@@ -77,6 +104,7 @@ isgender: string = ''; // Holds selected value ('yes' or 'no')
 
 selectgenderType(gender: string) {
   this.isgender = gender;
+  this.jobForm.get('isgender')?.setValue(gender);
   console.log("Gender is: ", gender);
 } 
 //jobtype
@@ -84,10 +112,11 @@ jobtype: string = ''; // Holds selected value ('yes' or 'no')
 
 selectjobType(time: string) {
   this.jobtype = time;
+  this.jobForm.get('jobType')?.setValue(time);
   console.log("Job type :", time);
 } 
 //location
-jobLocations: string[] = [
+locations: string[] = [
   'Within 10 KM of my city',
   'Within my city',
   'Anywhere in India'
@@ -95,20 +124,21 @@ jobLocations: string[] = [
 selectedLocation: string = '';
 selectLocation(location: string) {
   this.selectedLocation = location;
+  this.jobForm.get('selectedLocation')?.setValue(location);
   console.log("candidate location range : ",location);
 }
 //security given
 issecuritygiven: string = ''; // Holds selected value ('yes' or 'no')
-
 selectsecurity(security: string) {
   this.issecuritygiven = security;
+  this.jobForm.get('issecuritygiven')?.setValue(security);
   console.log("Security deposit :", security);
 } 
 //candidate type
 candidatetype: string = ''; // Holds selected value ('yes' or 'no')
-
 selectcanType(cantype: string) {
   this.candidatetype = cantype;
+  this.jobForm.get('candidatetype')?.setValue(cantype);
   console.log( "candidate type :",cantype);
 } 
  //candidate type ends
