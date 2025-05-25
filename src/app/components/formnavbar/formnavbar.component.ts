@@ -73,9 +73,7 @@ qualificationLevels: string[] = [
   '12th pass ',
   'Graduate','Post Graduate'
 ];
-
 selectedQualifications: string[] = [];
-
 toggleSelection(level: string) {
   const index = this.selectedQualifications.indexOf(level);
   if (index > -1) {
@@ -86,14 +84,11 @@ toggleSelection(level: string) {
     this.selectedQualifications.push(level);
   }
 }
-
 isSelected(level: string): boolean {
-  return this.selectedQualifications.includes(level);
-  
+  return this.selectedQualifications.includes(level); 
 }
 //work from home
 WorkFromHome: string = ''; // Holds selected value ('yes' or 'no')
-
 selectWorkType(choice: string) {
   this.WorkFromHome = choice;
   this.jobForm.get('WorkFromHome')?.setValue(choice);
@@ -127,6 +122,22 @@ selectLocation(location: string) {
   this.jobForm.get('selectedLocation')?.setValue(location);
   console.log("candidate location range : ",location);
 }
+// Available location options
+// locations: string[] = [
+//   'Within 10 KM of my city',
+//   'Within my city',
+//   'Anywhere in India'
+// ];
+
+// // Selected value
+// selectedLocation: string = '';
+
+// // Handler for toggle buttons
+// selectLocation(location: string) {
+//   this.selectedLocation = location;
+//   this.jobForm.get('locations')?.setValue(location);
+//   console.log('Candidate location range:', location);
+// }
 //security given
 issecuritygiven: string = ''; // Holds selected value ('yes' or 'no')
 selectsecurity(security: string) {
