@@ -1,7 +1,8 @@
 import { Component,Input, OnInit ,Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-
+import { ApiService } from 'src/app/services/api.service'; 
+import { LocalStorageUtil } from 'src/app/shared/utils/localStorageUtil';
 @Component({
   selector: 'app-formnavbar',
   standalone: false,
@@ -22,7 +23,7 @@ export class FormnavbarComponent  implements OnInit {
   };
 
    jobForm: FormGroup;
-  constructor( private fb: FormBuilder,
+  constructor( private fb: FormBuilder,private apiService: ApiService,
     private navCtrl: NavController)
      {this.jobForm = this.fb.group({
      jobTitle: ['', Validators.required,Validators.minLength(3)],
@@ -34,7 +35,7 @@ export class FormnavbarComponent  implements OnInit {
   isgender: ['', Validators.required],
   locations: ['', Validators.required],
   WorkFromHome: ['', Validators.required],
-  qualification: ['', Validators.required],
+  qualification: [[], Validators.required],
   salary: ['', Validators.required],
   skills: ['', Validators.required],
   issecuritygiven: ['', Validators.required],
@@ -55,9 +56,17 @@ export class FormnavbarComponent  implements OnInit {
   //     this.navCtrl.navigateForward(''); // Next step
   //   }
   // }
+  markFormTouched(formGroup: FormGroup) {
+  Object.values(formGroup.controls).forEach(control => {
+    control.markAsTouched();
+  });
+}
+
  nextStep() {
-  if (this.jobForm.valid) {
-    console.log('Form data:', this.jobForm.value);
+  if (true) {
+     this.markFormTouched(this.jobForm);
+    // console.log('Form data:', this.jobForm.value);
+    this.navCtrl.navigateForward(''); // Next step
     // this.navCtrl.navigateForward('next-page'); // Replace with actual route
   } else {
     this.jobForm.markAllAsTouched();
@@ -65,30 +74,100 @@ export class FormnavbarComponent  implements OnInit {
   }
 }
 
+submitForm() {
+  if (this.jobForm.invalid) {
+    this.jobForm.markAllAsTouched(); // Show validation errors
+    return;
+  }
+
+  // const formData = this.jobForm.value;
+const formData = {
+  ...this.jobForm.value,
+  step_one_data: "step one", // replace with actual step one form/control or object
+  user_id: LocalStorageUtil.getItem('user_id')
+};
+
+  console.log('Submitting form:', formData);
+
+  // Call your API service here
+  this.apiService.submitJob(formData).subscribe(
+    (response:any) => {
+      console.log('Success:', response);
+      // Show success toast or redirect
+    },
+    (error:any) => {
+      console.error('API Error:', error);
+      // Show error toast
+    }
+  );
+}
+
+
 //qualification options
-qualificationLevels: string[] = [
+// qualificationLevels: string[] = [
+qualification: string[] = [
+
   '<10th pass',
   '10th pass ',
   'Diploma',
   '12th pass ',
   'Graduate','Post Graduate'
 ];
-selectedQualifications: string[] = [];
-toggleSelection(level: string) {
-  const index = this.selectedQualifications.indexOf(level);
-  if (index > -1) {
-    // Deselect
-    this.selectedQualifications.splice(index, 1);
-  } else {
-    // Select
-    this.selectedQualifications.push(level);
-  }
+
+selectedQualifications: string = '';
+selectQualifications(level: string) {
+//   const index = this.selectedQualifications.indexOf(level);
+//   if (index > -1) {
+//     // Deselect
+//     this.selectedQualifications.splice(index, 1);
+//   } else {
+//     // Select
+//     this.selectedQualifications.push(level);
+//   }
+  this.selectedQualifications = level;
+ this.jobForm.get('qualification')?.setValue(level);
+  console.log("candidate location range : ",level);
 }
-isSelected(level: string): boolean {
-  return this.selectedQualifications.includes(level); 
-}
+
+// isSelected(level: string): boolean {
+//   return this.selectedQualifications.includes(level);
+  
+// }
+
+// qualificationLevels: string[] = [
+//   '<10th pass',
+//   '10th pass',
+//   'Diploma',
+//   '12th pass',
+//   'Graduate',
+//   'Post Graduate'
+// ];
+
+// // Selected qualification values
+// selectedQualifications: string[] = [];
+
+// // Toggle selection logic
+// toggleSelection(level: string) {
+//   const index = this.selectedQualifications.indexOf(level);
+//   if (index > -1) {
+//     // Deselect
+//     this.selectedQualifications.splice(index, 1);
+//   } else {
+//     // Select
+//     this.selectedQualifications.push(level);
+//   }
+
+//   // Update the form control with joined string (or use array if backend supports it)
+//   this.jobForm.get('qualification')?.setValue(this.selectedQualifications.join(', '));
+// }
+
+// // Utility for UI toggle fill/color
+// isSelected(level: string): boolean {
+//   return this.selectedQualifications.includes(level);
+// }
 //work from home
 WorkFromHome: string = ''; // Holds selected value ('yes' or 'no')
+
 selectWorkType(choice: string) {
   this.WorkFromHome = choice;
   this.jobForm.get('WorkFromHome')?.setValue(choice);
@@ -118,26 +197,13 @@ locations: string[] = [
 ];
 selectedLocation: string = '';
 selectLocation(location: string) {
-  this.selectedLocation = location;
-  this.jobForm.get('selectedLocation')?.setValue(location);
-  console.log("candidate location range : ",location);
+  // this.selectedLocation = location;
+  // this.jobForm.get('selectedLocation')?.setValue(location);
+  // console.log("candidate location range : ",location);
+   this.selectedLocation = location;
+  this.jobForm.get('locations')?.setValue(location);
+  console.log('Candidate location range:', location);
 }
-// Available location options
-// locations: string[] = [
-//   'Within 10 KM of my city',
-//   'Within my city',
-//   'Anywhere in India'
-// ];
-
-// // Selected value
-// selectedLocation: string = '';
-
-// // Handler for toggle buttons
-// selectLocation(location: string) {
-//   this.selectedLocation = location;
-//   this.jobForm.get('locations')?.setValue(location);
-//   console.log('Candidate location range:', location);
-// }
 //security given
 issecuritygiven: string = ''; // Holds selected value ('yes' or 'no')
 selectsecurity(security: string) {

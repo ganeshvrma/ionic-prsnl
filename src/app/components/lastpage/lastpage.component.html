@@ -125,15 +125,22 @@
           <br />
           <ion-checkbox labelPlacement="end" style="margin-top: 10px"
             >I Accept Terms and Conditions and <br />
-            Privacy Policy</ion-checkbox
+            Privacy Policy <span style="color: red;">*</span></ion-checkbox
           >
 
           <div class="btn">
             <ion-button expand="block" (click)="prev.emit()">Back</ion-button>
-            <ion-button
+            <!-- <ion-button
               expand="block"
               class="submitbtn"
               (click)="submit.emit()"
+              [disabled]="basiclast.invalid"
+              >Submit</ion-button
+            > -->
+            <ion-button
+              expand="block"
+              class="submitbtn"
+              (click)="submitForm()"
               [disabled]="basiclast.invalid"
               >Submit</ion-button
             >

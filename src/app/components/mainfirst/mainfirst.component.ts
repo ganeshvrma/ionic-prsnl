@@ -1,50 +1,82 @@
-import { Component, Input,OnInit ,Output,EventEmitter} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { LocalStorageUtil } from 'src/app/shared/utils/localStorageUtil';
+import { ApiService } from 'src/app/services/api.service'; 
+
+
 @Component({
   selector: 'app-mainfirst',
   standalone: false,
   templateUrl: './mainfirst.component.html',
   styleUrls: ['./mainfirst.component.scss'],
-   template: `
+  template: `
     <ion-card>
       <ion-card-header>Second Component</ion-card-header>
       <ion-button (click)="back.emit()">Back to First</ion-button>
     </ion-card>
-  `
+  `,
 })
-export class MainfirstComponent  implements OnInit {
+export class MainfirstComponent implements OnInit {
   @Input() formData: any;
   @Output() prev = new EventEmitter<void>();
   @Output() submit = new EventEmitter<void>();
-   company:FormGroup;
-  constructor( private fb: FormBuilder,  private navCtrl: NavController) {
-   {this.company = this.fb.group({
-
-  companyname: ['', Validators.required],
-  companyaddress: ['', Validators.required],
-  companystate: ['', Validators.required],
-  companycity: ['', Validators.required],
-  companycountry: ['', Validators.required],
-  companywebsite: ['', Validators.required],
-  companydesc: ['', Validators.required],
-  industrytype: ['', Validators.required],
-  numemployees: ['', Validators.required],
-  companyestb: ['', Validators.required],
-
- 
-        });}}
+  company: FormGroup;
+  constructor(private fb: FormBuilder, private navCtrl: NavController,private apiService: ApiService) {
+    {
+      this.company = this.fb.group({
+        companyname: ['', Validators.required],
+        companyaddress: ['', Validators.required],
+        companystate: ['', Validators.required],
+        companycity: ['', Validators.required],
+        companycountry: ['', Validators.required],
+        companywebsite: ['', Validators.required],
+        companydesc: ['', Validators.required],
+        industrytype: ['', Validators.required],
+        numemployees: ['', Validators.required],
+        companyestb: ['', Validators.required],
+      });
+    }
+  }
 
   ngOnInit() {}
 
-      nextStep2() {
-  if (this.company.valid) {
-    console.log('Form data:', this.company.value);
-    // this.navCtrl.navigateForward('next-page'); // Replace with actual route
-  } else {
-    this.company.markAllAsTouched();
-    console.log('Form is invalid');
+  nextStep2() {
+    if (this.company.valid) {
+      console.log('Form data:', this.company.value);
+      // this.navCtrl.navigateForward('next-page'); // Replace with actual route
+    } else {
+      this.company.markAllAsTouched();
+      console.log('Form is invalid');
+    }
+  }
+  //
+
+  submitForm() {
+    if (this.company.invalid) {
+      this.company.markAllAsTouched(); // Show validation errors
+      return;
+    }
+
+    // const formData = this.jobForm.value;
+    const formData = {
+      ...this.company.value,
+      step_two_data: "step 2", // replace with actual step one form/control or object
+      user_id: LocalStorageUtil.getItem('user_id'),
+    };
+
+    console.log('Submitting form:', formData);
+
+    // Call your API service here
+    this.apiService.submitCompany(formData).subscribe(
+      (response: any) => {
+        console.log('Success:', response);
+        // Show success toast or redirect
+      },
+      (error: any) => {
+        console.error('API Error:', error);
+        // Show error toast
+      }
+    );
   }
 }
-
-    }

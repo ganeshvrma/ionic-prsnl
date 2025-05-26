@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormnavbarComponent } from '../components/formnavbar/formnavbar.component';
 import { MainfirstComponent } from '../components/mainfirst/mainfirst.component';
 import {LastpageComponent} from '../components/lastpage/lastpage.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     FormnavbarComponent,
@@ -17,6 +17,7 @@ import {LastpageComponent} from '../components/lastpage/lastpage.component';
     CommonModule,
     IonicModule ,  // ✅ Add this here
     ReactiveFormsModule, 
+    HttpClientModule,
   ],
   exports: [
     FormnavbarComponent,

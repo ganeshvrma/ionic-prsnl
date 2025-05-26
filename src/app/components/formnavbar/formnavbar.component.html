@@ -3,7 +3,7 @@
     <ion-title style="padding-bottom: 15px">1/3</ion-title>
     <ion-title>Post Job </ion-title>
 
-    <ion-button slot="end" id="supporttitle" color="light" >
+    <ion-button slot="end" id="supporttitle" color="tertiary">
       <ion-icon name="call-outline"></ion-icon>Call customer support</ion-button
     >
   </ion-toolbar>
@@ -11,15 +11,15 @@
     <ion-segment value="job">
       <ion-segment-button
         value="job"
-        content-id="job"
+        content-id=""
         style="background-color: purple; color: white !important"
       >
         <ion-label class="ion-text-wrap">Job Details</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="company" content-id="company">
+      <ion-segment-button value="company" content-id="">
         <ion-label class="ion-text-wrap">Company Details</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="basic" content-id="basic">
+      <ion-segment-button value="basic" content-id="">
         <ion-label class="ion-text-wrap">Basic Details</ion-label>
       </ion-segment-button>
     </ion-segment>
@@ -54,7 +54,7 @@
             style="margin-bottom: 14px"
             formControlName="jobCategory"
           >
-            <option value selected>Select Job Category</option>
+            <option value ="">Select Job Category</option>
             <option value="it">IT</option>
             <option value="health">Healthcare</option>
             <option value="aviation">Aviation</option>
@@ -76,7 +76,7 @@
             <ion-button
               shape="round"
               [fill]="jobtype === 'fulltime' ? 'solid' : 'outline'"
-              [color]="jobtype === 'fulltime' ? 'primary' : 'medium'"
+               [ngClass]="jobtype === 'fulltime' ? 'purple-button' : 'medium-button' "  
               (click)="selectjobType('fulltime')"
               type="button"
             >
@@ -86,13 +86,13 @@
             <ion-button
               shape="round"
               [fill]="jobtype === 'parttime' ? 'solid' : 'outline'"
-              [color]="jobtype === 'parttime' ? 'primary' : 'medium'"
+              [ngClass]="jobtype === 'parttime' ? 'purple-button' : 'medium'" 
               (click)="selectjobType('parttime')"
               type="button"
             >
               Part Time
             </ion-button>
-            <input type="hidden" formControlName="jobType" [value]="jobtype" />
+            <input type="hidden" formControlName="jobType"  />
           </div>
 <ion-text
               color="danger"    
@@ -143,7 +143,7 @@
             <ion-button
               shape="round"
               [fill]="candidatetype === 'fresher' ? 'solid' : 'outline'"
-              [color]="candidatetype === 'fresher' ? 'primary' : 'medium'"
+              [ngClass]="candidatetype === 'fresher' ? 'purple-button' : 'medium'"
               (click)="selectcanType('fresher')"
               type="button"
             >
@@ -153,13 +153,13 @@
             <ion-button
               shape="round"
               [fill]="candidatetype === 'experienced' ? 'solid' : 'outline'"
-              [color]="candidatetype === 'experienced' ? 'primary' : 'medium'"
+              [ngClass]="candidatetype === 'experienced' ? 'purple-button' : 'medium'"
               (click)="selectcanType('experienced')"
               type="button"
             >
               Experienced
             </ion-button>
-            <input type="hidden" formControlName="candidatetype" [value]="candidatetype" />
+            <input type="hidden" formControlName="candidatetype" />
           </div>
           <ion-text
               color="danger"
@@ -181,7 +181,7 @@
             <ion-button
               shape="round"
               [fill]="isgender === 'male' ? 'solid' : 'outline'"
-              [color]="isgender === 'male' ? 'primary' : 'medium'"
+              [ngClass]="isgender === 'male' ? 'purple-button' : 'medium'"
               (click)="selectgenderType('male')"
               type="button"
             >
@@ -191,13 +191,13 @@
             <ion-button
               shape="round"
               [fill]="isgender === 'female' ? 'solid' : 'outline'"
-              [color]="isgender === 'female' ? 'primary' : 'medium'"
+              [ngClass]="isgender === 'female' ? 'purple-button' : 'medium'"
               (click)="selectgenderType('female')"
               type="button"
             >
               Female
             </ion-button>
-           <input type="hidden" formControlName="isgender" [value]="isgender" />
+           <input type="hidden" formControlName="isgender"  />
           </div>
            <ion-text
               color="danger"
@@ -210,7 +210,8 @@
               >
             </ion-text>
           <p>Candidate Location</p>
-          <div class="location-toggle">
+          <!-- <div class="location-toggle">
+
             <ion-button
               *ngFor="let location of locations"
               shape="round"
@@ -221,30 +222,22 @@
               {{ location }}
             </ion-button>
            <input type="hidden" formControlName="locations" [value]="locations" />
-          </div>
-          <!-- <div class="location-toggle">
+          </div> -->
+             <div class="location-toggle">
   <ion-button
     *ngFor="let location of locations"
     shape="round"
     [fill]="selectedLocation === location ? 'solid' : 'outline'"
-    [color]="selectedLocation === location ? 'primary' : 'medium'"
+    [ngClass]="selectedLocation === location ? 'purple-button' : 'medium'"
     (click)="selectLocation(location)"
     type="button"
   >
     {{ location }}
-  </ion-button> -->
+  </ion-button>
 
   <!-- Hidden form control with selected value -->
-  <!-- <input type="hidden" formControlName="locations" [value]="selectedLocation" />
-</div> -->
-
-<!-- Validation Message -->
-<!-- <ion-text color="danger" *ngIf="jobForm.get('locations')?.touched && jobForm.get('locations')?.invalid">
-  <small *ngIf="jobForm.get('locations')?.errors?.['required']">
-    Candidate Location is required
-  </small>
-</ion-text> -->
-
+  <input type="hidden" formControlName="locations" [value]="selectedLocation" />
+</div>
            <ion-text
               color="danger"
               *ngIf="
@@ -262,7 +255,7 @@
             <ion-button
               shape="round"
               [fill]="WorkFromHome === 'yes' ? 'solid' : 'outline'"
-              [color]="WorkFromHome === 'yes' ? 'primary' : 'medium'"
+              [ngClass]="WorkFromHome === 'yes' ? 'purple-button': 'medium'"
               (click)="selectWorkType('yes')"
               type="button"
             >
@@ -272,37 +265,57 @@
             <ion-button
               shape="round"
               [fill]="WorkFromHome === 'no' ? 'solid' : 'outline'"
-              [color]="WorkFromHome === 'no' ? 'primary' : 'medium'"
+              [ngClass]="WorkFromHome === 'no' ? 'purple-button' : 'medium'"
               (click)="selectWorkType('no')"
               type="button"
             >
               No
             </ion-button>
-            <input type="hidden" formControlName="WorkFromHome" [value]="WorkFromHome" />
+            <input type="hidden" formControlName="WorkFromHome"  />
           </div>
           <ion-text
               color="danger"
               *ngIf="
-                jobForm.get('workFromHome')?.touched &&
-                jobForm.get('workFromHome')?.invalid
+                jobForm.get('WorkFromHome')?.touched &&
+                jobForm.get('WorkFromHome')?.invalid
               "
             >
-              <small *ngIf="jobForm.get('workFromHome')?.errors?.['required']"
+              <small *ngIf="jobForm.get('WorkFromHome')?.errors?.['required']"
                 >Choose any one option</small
               >
             </ion-text>
           <p>Minimum Qualification <span style="color: red">*</span></p>
-          <div class="qualification-buttons" formControlName="qualification">
+          <div class="qualification-buttons" >
             <ion-button
-              *ngFor="let level of qualificationLevels"
-              [fill]="isSelected(level) ? 'solid' : 'outline'"
-              [color]="isSelected(level) ? 'primary' : 'medium'"
+              *ngFor="let level of qualification"
+              [fill]="selectedQualifications === level ? 'solid' : 'outline'"
+              [ngClass]="selectedQualifications === level ? 'purple-button' : 'medium'"
               shape="round"
-              (click)="toggleSelection(level)"
+              (click)="selectQualifications(level)"
+              type="button"
             >
               {{ level }}
             </ion-button>
-            <ion-text
+                 <input type="hidden" formControlName="qualification" [value]="selectedQualifications" />
+ 
+            
+          </div>
+          <!-- <div class="qualification-buttons">
+  <ion-button
+    *ngFor="let level of qualificationLevels"
+    [fill]="isSelected(level) ? 'solid' : 'outline'"
+    [color]="isSelected(level) ? 'primary' : 'medium'"
+    shape="round"
+    (click)="toggleSelection(level)"
+    type="button"
+  >
+    {{ level }}
+  </ion-button> -->
+
+  <!-- Hidden input to bind selected values to the form -->
+  <!-- <input type="hidden" formControlName="qualification" [value]="selectedQualifications.join(', ')" />
+</div> -->
+          <ion-text
               color="danger"
               *ngIf="
                 jobForm.get('qualification')?.touched &&
@@ -313,7 +326,6 @@
                 >Qualification field is required</small
               >
             </ion-text>
-          </div>
           <p>Salary per Month <span style="color: red">*</span></p>
           <input type="number" formControlName="salary" />
           <ion-text
@@ -351,7 +363,7 @@
             <ion-button
               shape="round"
               [fill]="issecuritygiven === 'yes' ? 'solid' : 'outline'"
-              [color]="issecuritygiven === 'yes' ? 'primary' : 'medium'"
+              [ngClass]="issecuritygiven === 'yes' ? 'purple-button' : 'medium'"
               (click)="selectsecurity('yes')"
               type="button"
             >
@@ -361,13 +373,13 @@
             <ion-button
               shape="round"
               [fill]="issecuritygiven === 'no' ? 'solid' : 'outline'"
-              [color]="issecuritygiven === 'no' ? 'primary' : 'medium'"
+              [ngClass]="issecuritygiven === 'no' ? 'purple-button' : 'medium'"
               (click)="selectsecurity('no')"
               type="button"
             >
               No
             </ion-button> 
-            <input type="hidden" formControlName="issecuritygiven" [value]="issecuritygiven" />
+            <input type="hidden" formControlName="issecuritygiven"  />
           </div>
           <ion-text
               color="danger"
@@ -385,7 +397,7 @@
 
           <div><ion-label>Language 1</ion-label></div>
           <select class="langlabel" formControlName="language1">
-            <option value selected>Select option</option>
+            <option value="">Select option</option>
             <option value="Hindi">Hindi</option>
             <option value="English">English</option>
             <option value="Punjabi">Punjabi</option>
@@ -405,7 +417,7 @@
 </ion-text>
          <div> <ion-label>Language 2</ion-label></div>
           <select class="langlabel" formControlName="language2">
-            <option value selected>Select option</option>
+            <option value ="">Select option</option>
             <option value="Hindi">Hindi</option>
             <option value="English">English</option>
             <option value="Punjabi">Punjabi</option>
@@ -454,7 +466,7 @@
             class="jdinputspace"
             formControlName="interviewTime"
           >
-            <option value selected>Select Timings</option>
+            <option value ="">Select Timings</option>
             <option value="9">9:00 AM - 11:00 AM</option>
             <option value="11">11:00 AM- 1:00 PM</option>
             <option value="14">2:00 PM - 4:00 PM</option>
@@ -465,7 +477,7 @@
 </ion-text>
           <label for="day">Day</label>
           <select id="day" class="jdinputspace" formControlName="interviewDay">
-            <option value selected>Select Day</option>
+            <option value="">Select Day</option>
             <option value="sun">Sunday</option>
             <option value="mon">Monday</option>
             <option value="tue">Tuesday</option>
@@ -477,9 +489,17 @@
 <ion-text color="danger" *ngIf="jobForm.get('interviewDay')?.touched && jobForm.get('interviewDay')?.invalid">
   <small *ngIf="jobForm.get('interviewDay')?.errors?.['required']">Select any one day</small>
 </ion-text>
-          <ion-button
+          <!-- <ion-button
             expand="full"
             (click)="submit.emit()"
+            type="submit"
+           [disabled]="jobForm.invalid"
+          >
+            Next
+          </ion-button> -->
+          <ion-button
+            expand="full"
+           (click)="submitForm()"
             type="submit"
            [disabled]="jobForm.invalid"
           >

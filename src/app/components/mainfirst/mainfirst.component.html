@@ -268,7 +268,9 @@
           </ion-text>
           <div class="btn">
             <ion-button (click)="prev.emit()">Back</ion-button>
-            <ion-button (click)="submit.emit()" type="submit" [disabled]="company.invalid"
+            <!-- <ion-button (click)="submit.emit()" type="submit" [disabled]="company.invalid" -->
+            <ion-button (click)="submitForm()" type="submit" [disabled]="company.invalid"
+
               >Next</ion-button
             >
           </div>
