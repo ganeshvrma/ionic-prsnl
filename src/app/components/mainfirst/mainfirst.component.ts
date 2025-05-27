@@ -22,6 +22,17 @@ export class MainfirstComponent implements OnInit {
   @Output() prev = new EventEmitter<void>();
   @Output() submit = new EventEmitter<void>();
   company: FormGroup;
+//get api 
+  industryTypeOptions:any[]=[];
+  selectedIndustryType:string='';
+  
+  stateOptions:any[]=[];
+  selectedState:string="";
+
+   cityOptions:any[]=[];
+   selectedCity:string="";
+
+//
   constructor(private fb: FormBuilder, private navCtrl: NavController,private apiService: ApiService) {
     {
       this.company = this.fb.group({
@@ -39,7 +50,36 @@ export class MainfirstComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+     this.apiService.getIndustryType().subscribe((res: any) => {
+      if (res.status === 'success') {
+        this.industryTypeOptions = res.data;}
+      });
+      this.apiService.getStates().subscribe((res: any) => {
+      if (res.status === 'success') {
+        this.stateOptions = res.data;}
+      });
+  //     // this.apiService.getCitiesByState().subscribe((res: any) => {
+  //     // if (res.status === 'success') {
+  //     //   this.cityOptions = res.data;}
+  //     // });
+  }
+// Load cities when a state is selected
+    onStateChange(stateId: number) {
+    if (stateId) {
+    this.apiService.getCitiesByState(stateId).subscribe((res: any) => {
+      if (res.status === 'success') {
+        this.cityOptions = res.data;
+        this.selectedCity = ''; // Reset selected city
+        this.company.get('companycity')?.setValue(''); // Clear city field
+      }
+    });
+  } else {
+    this.cityOptions = [];
+    this.selectedCity = '';
+    this.company.get('companycity')?.setValue('');
+  }
+}
 
   nextStep2() {
     if (this.company.valid) {

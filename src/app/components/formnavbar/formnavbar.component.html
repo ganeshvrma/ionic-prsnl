@@ -48,18 +48,27 @@
             >
           </ion-text>
           <p>Job Category <span style="color: red">*</span></p>
+          <!-- <ion-select -->
           <select
+
             name=""
             id=""
             style="margin-bottom: 14px"
             formControlName="jobCategory"
+             [(ngModel)]="selectedJobCategory"
+             placeholder="Select a category"
           >
+            <!-- <ion-select-option  *ngFor="let option of dropdownOptions" [value]="option.id">{{option.category_name}}</ion-select-option> -->
+            <option  *ngFor="let option of dropdownOptions" [value]="option.id">{{option.category_name}}</option>
+
             <option value ="">Select Job Category</option>
-            <option value="it">IT</option>
+           <!--  <option value="it">IT</option>
             <option value="health">Healthcare</option>
             <option value="aviation">Aviation</option>
-            <option value="finance">Finance</option>
+            <option value="finance">Finance</option> -->
+          <!-- </ion-select> -->
           </select>
+          
           <ion-text
             color="danger"
             *ngIf="
@@ -76,7 +85,7 @@
             <ion-button
               shape="round"
               [fill]="jobtype === 'fulltime' ? 'solid' : 'outline'"
-               [ngClass]="jobtype === 'fulltime' ? 'purple-button' : 'medium-button' "  
+              [color]="jobtype === 'fulltime' ? 'tertiary' : 'medium'"
               (click)="selectjobType('fulltime')"
               type="button"
             >
@@ -86,7 +95,7 @@
             <ion-button
               shape="round"
               [fill]="jobtype === 'parttime' ? 'solid' : 'outline'"
-              [ngClass]="jobtype === 'parttime' ? 'purple-button' : 'medium'" 
+              [ngClass]="jobtype === 'parttime' ? 'purple-button' : 'medium'"
               (click)="selectjobType('parttime')"
               type="button"
             >
@@ -165,14 +174,34 @@
               color="danger"
               *ngIf="
                 jobForm.get('candidatetype')?.touched &&
-                jobForm.get('candidatetype')?.invalid
-              "
-            >
+                jobForm.get('candidatetype')?.invalid">
               <small
                 *ngIf="jobForm.get('candidatetype')?.errors?.['required']"
                 >Candidate Requirement is required</small
               >
             </ion-text>
+            <!-- Min/Max Experience Fields -->
+<div *ngIf="candidatetype">
+  <div *ngIf="candidatetype === 'fresher'">
+    <p>Min Experience</p>
+    <input formControlName="minexp" [value]="'Fresher'" readonly>
+  </div>
+
+  <div *ngIf="candidatetype === 'fresher'">
+    <p>Max Experience</p>
+    <input formControlName="maxexp" [value]="'Fresher'" readonly>
+  </div>
+
+  <div *ngIf="candidatetype === 'experienced'">
+    <p>Min Experience</p>
+    <input type="number" formControlName="minexp">
+  </div>
+
+  <div *ngIf="candidatetype === 'experienced'">
+    <p>Max Experience</p>
+    <input type="number" formControlName="maxexp">
+  </div>
+</div>
           <p>
             Select Gender <span style="color: red">*</span>
           </p>
@@ -396,15 +425,17 @@
           <p>Languages Known <span style="color: red">*</span></p>
 
           <div><ion-label>Language 1</ion-label></div>
-          <select class="langlabel" formControlName="language1">
+          <select class="langlabel" formControlName="language1"[(ngModel)]="selectedLanguage">
+       <!-- <ion-select-option  *ngFor="let option of dropdownOptions" [value]="option.id">{{option.category_name}}</ion-select-option> -->
+             <option *ngFor="let option of languageOptions" [value]="option.id">{{option.value}}</option>
             <option value="">Select option</option>
-            <option value="Hindi">Hindi</option>
+            <!-- <option value="Hindi">Hindi</option>
             <option value="English">English</option>
             <option value="Punjabi">Punjabi</option>
             <option value="Marathi">Marathi</option>
             <option value="Gujarati">Gujarati</option>
             <option value="Maitali">Maitali</option>
-            <option value="Bengali">Bengali</option>
+            <option value="Bengali">Bengali</option> -->
           </select>
 
           <div class="rws">
@@ -418,6 +449,7 @@
          <div> <ion-label>Language 2</ion-label></div>
           <select class="langlabel" formControlName="language2">
             <option value ="">Select option</option>
+            <option value=""> </option>
             <option value="Hindi">Hindi</option>
             <option value="English">English</option>
             <option value="Punjabi">Punjabi</option>
@@ -446,7 +478,7 @@
           />
           <ion-text color="danger" *ngIf="jobForm.get('jobStartTime')?.touched && jobForm.get('jobStartTime')?.invalid">
   <small *ngIf="jobForm.get('jobStartTime')?.errors?.['required']">Feild is required</small>
-</ion-text>
+</ion-text><br>
           <label for="endtime">End Time</label>
           <input
             type="time"
@@ -474,7 +506,7 @@
           </select>
           <ion-text color="danger" *ngIf="jobForm.get('interviewTime')?.touched && jobForm.get('interviewTime')?.invalid">
   <small *ngIf="jobForm.get('interviewTime')?.errors?.['required']">Select anyone timeslot</small>
-</ion-text>
+</ion-text><br>
           <label for="day">Day</label>
           <select id="day" class="jdinputspace" formControlName="interviewDay">
             <option value="">Select Day</option>

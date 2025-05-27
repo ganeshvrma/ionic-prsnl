@@ -22,6 +22,12 @@ export class LastpageComponent  implements OnInit {
   @Output() submit = new EventEmitter<void>();
 
    basiclast:FormGroup;
+
+   //get api
+   empProfileOptions:any[]=[];
+   selectedEmplProfile:string="";
+
+   //end 
   constructor( private fb: FormBuilder,  private navCtrl: NavController,private apiService: ApiService) {
    {this.basiclast = this.fb.group({
 
@@ -29,11 +35,18 @@ export class LastpageComponent  implements OnInit {
   emplemail: ['', Validators.required],
   contactperson: ['', Validators.required],
   emplnumber: ['', Validators.required],
-  
+    acceptTerms: [false, Validators.requiredTrue],
         });}}
-  ngOnInit() {}
+  ngOnInit() {
+     this.apiService.getEmpProfile().subscribe((res: any) => {
+      if (res.status === 'success') {
+        this.empProfileOptions = res.data;}
+      });
+  }
   subbmit() {
   if (this.basiclast.valid) {
+     const accepted = this.basiclast.value.acceptTerms ? 1 : 0;
+      console.log('Accepted value:', accepted);
     console.log('Form data:', this.basiclast.value);
     // this.navCtrl.navigateForward('next-page'); // Replace with actual route
   } else {

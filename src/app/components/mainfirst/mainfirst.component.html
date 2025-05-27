@@ -123,32 +123,22 @@
             >
           </ion-text>
           <p>State<span style="color: red">*</span></p>
-          <select name="" id="" formControlName="companystate">
-            <option value selected>Select one</option>
-            <option value="hr">Haryana</option>
-            <option value="pb">Punjab</option>
-            <option value="ut">Uttarakhand</option>
-            <option value="hp">Himachal Pradesh</option>
-            <option value="up">Uttar Pradesh</option>
+          <select name="" id="" formControlName="companystate"  [(ngModel)]="selectedState" (ngModelChange)="onStateChange($event)">
+            <option value="">Select one</option>
+             <option *ngFor="let option of stateOptions" [value]="option.id">{{option.name}}</option>
           </select>
           <ion-text
             color="danger"
             *ngIf="
               company.get('companystate')?.touched &&
-              company.get('companystate')?.invalid
-            "
-          >
+              company.get('companystate')?.invalid">
             <small *ngIf="company.get('companystate')?.errors?.['required']"
-              >Feild is required</small
-            >
+              >Feild is required</small>
           </ion-text>
           <p>City<span style="color: red">*</span></p>
-          <select name="" id="" formControlName="companycity">
-            <option value selected>Select one</option>
-            <option value="amb">Ambala</option>
-            <option value="kar">Karnal</option>
-            <option value="ynr">Yamuna Nagar</option>
-            <option value="sonipat">Sonipat</option>
+          <select name="" id="" formControlName="companycity"  [(ngModel)]="selectedCity" [disabled]="!company.get('companystate')?.value || cityOptions.length === 0">
+            <option value="">Select one</option>
+             <option *ngFor="let option of cityOptions" [value]="option.id">{{option.name}}</option>
           </select>
           <ion-text
             color="danger"
@@ -162,14 +152,7 @@
             >
           </ion-text>
           <p>Country<span style="color: red">*</span></p>
-          <select name="" id="" formControlName="companycountry">
-            <option value selected>Select one</option>
-            <option value="ind">India</option>
-            <option value="is">Israel</option>
-            <option value="ru">Russia</option>
-            <option value="jp">Japan</option>
-            <option value="ar">Argentina</option>
-          </select>
+          <input type="text" value="" formControlName="companycountry" >
           <ion-text
             color="danger"
             *ngIf="
@@ -215,13 +198,15 @@
             >
           </ion-text>
           <p>Industry Type <span style="color: red">*</span></p>
-          <select name="" id="" formControlName="industrytype">
-            <option value selected>Select one</option>
-            <option value="auto">Automotive</option>
+          <select name="" id="" formControlName="industrytype" [(ngModel)]="selectedIndustryType">
+            <option value="">Select one</option>
+             <option *ngFor="let option of industryTypeOptions" [value]="option.id">{{option.value}}</option>
+
+            <!-- <option value="auto">Automotive</option>
             <option value=""></option>
             <option value=""></option>
             <option value=""></option>
-            <option value=""></option>
+            <option value=""></option> -->
           </select>
           <ion-text
             color="danger"
@@ -269,9 +254,7 @@
           <div class="btn">
             <ion-button (click)="prev.emit()">Back</ion-button>
             <!-- <ion-button (click)="submit.emit()" type="submit" [disabled]="company.invalid" -->
-            <ion-button (click)="submitForm()" type="submit" [disabled]="company.invalid"
-
-              >Next</ion-button
+            <ion-button (click)="submitForm()" type="submit" [disabled]="company.invalid" >Next</ion-button
             >
           </div>
         </div>

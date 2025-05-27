@@ -1,6 +1,9 @@
 
 
-
+// $colors: (
+//   purple: #9b59b6,
+//   /* keep existing colors */
+// );
 #supporttitle{
     font-size: 0.7rem;
     margin-right: 10px;
@@ -14,10 +17,6 @@
 .purple-button {
   --background: #800080;
   --color: #fff;
-}
-.medium-button {
-  --background: var(--ion-color-medium) !important;
-  --color: #923030;
 }
 h6{
   font-size: 0.5rem;

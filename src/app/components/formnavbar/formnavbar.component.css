@@ -15,11 +15,6 @@
   --color: #fff;
 }
 
-.medium-button {
-  --background: var(--ion-color-medium) !important;
-  --color: #923030;
-}
-
 h6 {
   font-size: 0.5rem;
 }

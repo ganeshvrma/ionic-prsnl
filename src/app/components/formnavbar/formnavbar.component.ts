@@ -21,7 +21,16 @@ export class FormnavbarComponent  implements OnInit {
    form = {
     description: ''
   };
+//job cate api try
 
+  dropdownOptions: any[] = [];
+  selectedJobCategory: string="";
+languageOptions:any[]=[];
+selectedLanguage:string="";
+
+
+
+  //try 
    jobForm: FormGroup;
   constructor( private fb: FormBuilder,private apiService: ApiService,
     private navCtrl: NavController)
@@ -32,6 +41,8 @@ export class FormnavbarComponent  implements OnInit {
   positionsOpen: ['', [Validators.required, Validators.min(1)]],
   jobDescription: ['', Validators.required],
   candidatetype: ['', Validators.required],
+   minexp: [''],
+    maxexp: [''],
   isgender: ['', Validators.required],
   locations: ['', Validators.required],
   WorkFromHome: ['', Validators.required],
@@ -47,8 +58,18 @@ export class FormnavbarComponent  implements OnInit {
   interviewDay: ['', Validators.required]
       
     }); }
+    ngOnInit() {
+     this.apiService.getJobCategory().subscribe((res: any) => {
+      if (res.status === 'success') {
+        this.dropdownOptions = res.data;}
+      });
+      this.apiService.getLanguages().subscribe((res: any) => {
+      if (res.status === 'success') {
+        this.languageOptions = res.data;}
+      });
 
-  ngOnInit() {}
+  }
+  
   nextpg(){}
   // nextStep() {
   //   if (this.jobForm.valid) {
@@ -216,6 +237,17 @@ candidatetype: string = ''; // Holds selected value ('yes' or 'no')
 selectcanType(cantype: string) {
   this.candidatetype = cantype;
   this.jobForm.get('candidatetype')?.setValue(cantype);
+   if (cantype === 'fresher') {
+    this.jobForm.get('minexp')?.setValue('Fresher');
+    this.jobForm.get('maxexp')?.setValue('Fresher');
+    this.jobForm.get('minexp')?.disable();
+    this.jobForm.get('maxexp')?.disable();
+  } else {
+    this.jobForm.get('minexp')?.reset();
+    this.jobForm.get('maxexp')?.reset();
+    this.jobForm.get('minexp')?.enable();
+    this.jobForm.get('maxexp')?.enable();
+  }
   console.log( "candidate type :",cantype);
 } 
  //candidate type ends

@@ -78,13 +78,15 @@
             id=""
             placeholder="General "
             formControlName="contactperson"
+            [(ngModel)]="selectedEmplProfile"
           >
-            <option value selected>Select one</option>
-            <option value="hdgnd">General Manager</option>
+            <option value ="">Select one</option>
+<option *ngFor="let option of empProfileOptions" [value]="option.id">{{option.profile}}</option>
+            <!-- <option value="hdgnd">General Manager</option>
             <option value=""></option>
             <option value=""></option>
             <option value=""></option>
-            <option value=""></option>
+            <option value=""></option> -->
           </select>
           <ion-text
             color="danger"
@@ -123,11 +125,23 @@
           <!-- <p for="terms"> I Accept Terms and Conditions and Privacy Policy<span style="color: red;">*</span></p>
       <input type="checkbox" name="terms" id="terms"  > -->
           <br />
-          <ion-checkbox labelPlacement="end" style="margin-top: 10px"
+          <!-- <ion-checkbox labelPlacement="end" style="margin-top: 10px"
             >I Accept Terms and Conditions and <br />
             Privacy Policy <span style="color: red;">*</span></ion-checkbox
-          >
+          > -->
+           <ion-checkbox
+      formControlName="acceptTerms"
+      labelPlacement="end"
+      style="margin-top: 10px"
+    >
+      I Accept Terms and Conditions and <br />
+      Privacy Policy <span style="color: red;">*</span>
+    </ion-checkbox>
+  
 
+  <ion-text color="danger" *ngIf="basiclast.controls['acceptTerms'].touched && basiclast.controls['acceptTerms'].invalid">
+    <p>You must accept the terms and conditions</p>
+  </ion-text>
           <div class="btn">
             <ion-button expand="block" (click)="prev.emit()">Back</ion-button>
             <!-- <ion-button
