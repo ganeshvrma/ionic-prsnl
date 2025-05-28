@@ -50,5 +50,8 @@ export class ApiService {
   // getCities(): Observable<any[]> {
   //   return this.http.get<any[]>(`${this.apiUrl}/Api/get_cities`);
   // }
+ getSkills(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/Api/get_skills`);
+  }
 
 }
