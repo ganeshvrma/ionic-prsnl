@@ -45,6 +45,11 @@ h6 {
   border-radius: 5px;
 }
 
+.minmax {
+  display: flex;
+  justify-content: space-around;
+}
+
 .rws {
   margin-top: 5px;
   margin-bottom: 15px;

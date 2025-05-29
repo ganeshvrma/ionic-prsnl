@@ -181,7 +181,7 @@
               >
             </ion-text>
             <!-- Min/Max Experience Fields -->
-<div *ngIf="candidatetype">
+<div *ngIf="candidatetype" class="minmax">
   <div *ngIf="candidatetype === 'fresher'">
     <p>Min Experience</p>
     <input formControlName="minexp" [value]="'Fresher'" readonly>
@@ -367,13 +367,28 @@
               >Feild is required</small
             >
           </ion-text>
-          <p>Mention Skills required <span style="color: red">*</span></p>
+           <!-- <p>Mention Skills required <span style="color: red">*</span></p>
           <ion-textarea
             autoGrow="true"
             class="txtarea"
             formControlName="skills"
           >
-          </ion-textarea>
+          </ion-textarea> 
+           -->
+          <ion-label>Skills Required <span style="color: red">*</span></ion-label>
+<ion-select
+  formControlName="skills"
+  [multiple]="true"
+  placeholder="Select Skills"
+>
+  <ion-select-option *ngFor="let skill of selectedSkills" [value]="skill">
+    {{skill}}
+  </ion-select-option>
+</ion-select>
+<ion-text color="danger" *ngIf="jobForm.get('skills')?.touched && jobForm.get('skills')?.invalid">
+  Please select at least one skill.
+</ion-text>
+   
           <ion-text
             color="danger"
             *ngIf="

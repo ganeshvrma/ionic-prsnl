@@ -3,17 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service'; 
 import { LocalStorageUtil } from 'src/app/shared/utils/localStorageUtil';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-formnavbar',
   standalone: false,
   templateUrl: './formnavbar.component.html',
   styleUrls: ['./formnavbar.component.scss'],
-   template: `
-    <ion-card>
-      <ion-card-header>First Component</ion-card-header>
-      <ion-button (click)="next.emit()">Go to Second</ion-button>
-    </ion-card>
-  `
+   
 })
 export class FormnavbarComponent  implements OnInit {
    @Input() formData: any;
@@ -25,10 +22,11 @@ export class FormnavbarComponent  implements OnInit {
 
   dropdownOptions: any[] = [];
   selectedJobCategory: string="";
-languageOptions:any[]=[];
-selectedLanguage:string="";
 
+  languageOptions:any[]=[];
+  selectedLanguage:string="";
 
+  selectedSkills: string[] = [];
 
   //try 
    jobForm: FormGroup;
@@ -55,7 +53,8 @@ selectedLanguage:string="";
   jobStartTime: ['', Validators.required],
   jobEndTime: ['', Validators.required],
   interviewTime: ['', Validators.required],
-  interviewDay: ['', Validators.required]
+  interviewDay: ['', Validators.required],
+   
       
     }); }
     ngOnInit() {
@@ -66,6 +65,10 @@ selectedLanguage:string="";
       this.apiService.getLanguages().subscribe((res: any) => {
       if (res.status === 'success') {
         this.languageOptions = res.data;}
+      });
+      this.apiService.getSkills().subscribe((res: any) => {
+      if (res.status === 'success') {
+        this.selectedSkills = res.data;}
       });
 
   }
