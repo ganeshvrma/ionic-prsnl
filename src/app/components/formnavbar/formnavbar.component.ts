@@ -25,6 +25,9 @@ export class FormnavbarComponent  implements OnInit {
 
   languageOptions:any[]=[];
   selectedLanguage:string="";
+   languageOptions2:any[]=[];
+  selectedLanguage2:string="";
+
 
   selectedSkills: any[] = [];
 
@@ -65,6 +68,10 @@ export class FormnavbarComponent  implements OnInit {
       this.apiService.getLanguages().subscribe((res: any) => {
       if (res.status === 'success') {
         this.languageOptions = res.data;}
+      });
+      this.apiService.getLanguages().subscribe((res: any) => {
+      if (res.status === 'success') {
+        this.languageOptions2 = res.data;}
       });
       this.apiService.getSkills().subscribe((res: any) => {
       if (res.status === 'success') {

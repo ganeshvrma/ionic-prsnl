@@ -444,13 +444,7 @@
        <!-- <ion-select-option  *ngFor="let option of dropdownOptions" [value]="option.id">{{option.category_name}}</ion-select-option> -->
              <option *ngFor="let option of languageOptions" [value]="option.id">{{option.value}}</option>
             <option value="">Select option</option>
-            <!-- <option value="Hindi">Hindi</option>
-            <option value="English">English</option>
-            <option value="Punjabi">Punjabi</option>
-            <option value="Marathi">Marathi</option>
-            <option value="Gujarati">Gujarati</option>
-            <option value="Maitali">Maitali</option>
-            <option value="Bengali">Bengali</option> -->
+           
           </select>
 
           <div class="rws">
@@ -462,16 +456,11 @@
   <small *ngIf="jobForm.get('language1')?.errors?.['required']">Select any one Language</small>
 </ion-text>
          <div> <ion-label>Language 2</ion-label></div>
-          <select class="langlabel" formControlName="language2">
-            <option value ="">Select option</option>
-            <option value=""> </option>
-            <option value="Hindi">Hindi</option>
-            <option value="English">English</option>
-            <option value="Punjabi">Punjabi</option>
-            <option value="Marathi">Marathi</option>
-            <option value="Gujrati">Gujrati</option>
-            <option value="Maithali">Maithali</option>
-            <option value="Bengali">Bengali</option>
+         <select class="langlabel" formControlName="language2"[(ngModel)]="selectedLanguage2">
+       <!-- <ion-select-option  *ngFor="let option of dropdownOptions" [value]="option.id">{{option.category_name}}</ion-select-option> -->
+             <option *ngFor="let option of languageOptions2" [value]="option.id">{{option.value}}</option>
+            <option value="">Select option</option>
+           
           </select>
           <div class="rws">
             <ion-checkbox>Read</ion-checkbox>
