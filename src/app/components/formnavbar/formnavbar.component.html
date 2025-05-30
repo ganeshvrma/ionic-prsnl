@@ -382,7 +382,7 @@
   placeholder="Select Skills"
 >
   <ion-select-option *ngFor="let skill of selectedSkills" [value]="skill">
-    {{skill}}
+    {{skill.value}}
   </ion-select-option>
 </ion-select>
 <ion-text color="danger" *ngIf="jobForm.get('skills')?.touched && jobForm.get('skills')?.invalid">

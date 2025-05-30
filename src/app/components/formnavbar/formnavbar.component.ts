@@ -26,7 +26,7 @@ export class FormnavbarComponent  implements OnInit {
   languageOptions:any[]=[];
   selectedLanguage:string="";
 
-  selectedSkills: string[] = [];
+  selectedSkills: any[] = [];
 
   //try 
    jobForm: FormGroup;
