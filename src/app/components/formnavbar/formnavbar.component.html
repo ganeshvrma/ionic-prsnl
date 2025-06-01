@@ -456,6 +456,7 @@
   <small *ngIf="jobForm.get('language1')?.errors?.['required']">Select any one Language</small>
 </ion-text>
          <div> <ion-label>Language 2</ion-label></div>
+        <!-- using ng-select for search with available option  -->
          <select class="langlabel" formControlName="language2"[(ngModel)]="selectedLanguage2">
        <!-- <ion-select-option  *ngFor="let option of dropdownOptions" [value]="option.id">{{option.category_name}}</ion-select-option> -->
              <option *ngFor="let option of languageOptions2" [value]="option.id">{{option.value}}</option>
